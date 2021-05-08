@@ -1,4 +1,4 @@
-package com.bangkit.healthtroops.ekipi.auth
+package com.bangkit.healthtroops.ekipi.ui.signup
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

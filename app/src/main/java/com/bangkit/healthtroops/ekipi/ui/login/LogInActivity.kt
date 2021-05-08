@@ -1,9 +1,10 @@
-package com.bangkit.healthtroops.ekipi.auth
+package com.bangkit.healthtroops.ekipi.ui.login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bangkit.healthtroops.ekipi.databinding.ActivityLogInBinding
+import com.bangkit.healthtroops.ekipi.ui.signup.SignUpActivity
 
 class LogInActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLogInBinding
