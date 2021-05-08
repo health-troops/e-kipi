@@ -8,7 +8,11 @@
         android:id="@+id/signUpUserFragment"
         android:name="com.bangkit.healthtroops.ekipi.ui.auth.SignUpUserFragment"
         android:label="fragment_sign_up_user"
-        tools:layout="@layout/fragment_sign_up_user" />
+        tools:layout="@layout/fragment_sign_up_user" >
+        <action
+            android:id="@+id/action_signUpUserFragment_to_homeActivity"
+            app:destination="@id/homeActivity" />
+    </fragment>
     <fragment
         android:id="@+id/signUpLoginFragment"
         android:name="com.bangkit.healthtroops.ekipi.ui.auth.SignUpLoginFragment"
@@ -26,5 +30,13 @@
         <action
             android:id="@+id/action_logInFragment_to_signUpLoginFragment"
             app:destination="@id/signUpLoginFragment" />
+        <action
+            android:id="@+id/action_logInFragment_to_homeActivity"
+            app:destination="@id/homeActivity" />
     </fragment>
+    <activity
+        android:id="@+id/homeActivity"
+        android:name="com.bangkit.healthtroops.ekipi.ui.home.HomeActivity"
+        android:label="activity_home"
+        tools:layout="@layout/activity_home" />
 </navigation>

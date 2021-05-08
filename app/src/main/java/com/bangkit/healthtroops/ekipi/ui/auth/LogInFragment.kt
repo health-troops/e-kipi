@@ -25,6 +25,9 @@ class LogInFragment : Fragment() {
         binding?.btnSignUp?.setOnClickListener {
             view.findNavController().navigate(R.id.action_logInFragment_to_signUpLoginFragment)
         }
+        binding?.btnLogIn?.setOnClickListener {
+            view.findNavController().navigate(R.id.action_logInFragment_to_homeActivity)
+        }
     }
 
     override fun onDestroyView() {
