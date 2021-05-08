@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/logInFragment">
+    <fragment
+        android:id="@+id/signUpUserFragment"
+        android:name="com.bangkit.healthtroops.ekipi.ui.auth.SignUpUserFragment"
+        android:label="fragment_sign_up_user"
+        tools:layout="@layout/fragment_sign_up_user" />
+    <fragment
+        android:id="@+id/signUpLoginFragment"
+        android:name="com.bangkit.healthtroops.ekipi.ui.auth.SignUpLoginFragment"
+        android:label="SignUpLoginFragment"
+        tools:layout="@layout/fragment_sign_up_login">
+        <action
+            android:id="@+id/action_signUpLoginFragment_to_signUpUserFragment"
+            app:destination="@id/signUpUserFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/logInFragment"
+        android:name="com.bangkit.healthtroops.ekipi.ui.auth.LogInFragment"
+        android:label="fragment_log_in"
+        tools:layout="@layout/fragment_log_in" >
+        <action
+            android:id="@+id/action_logInFragment_to_signUpLoginFragment"
+            app:destination="@id/signUpLoginFragment" />
+    </fragment>
+</navigation>
