@@ -11,11 +11,11 @@ import androidx.navigation.findNavController
 import com.bangkit.healthtroops.ekipi.R
 import com.bangkit.healthtroops.ekipi.databinding.FragmentLogInBinding
 import com.bangkit.healthtroops.ekipi.model.Account
-import com.bangkit.healthtroops.ekipi.model.LoginResponse
+import com.bangkit.healthtroops.ekipi.model.QueryResponse
 import com.bangkit.healthtroops.ekipi.service.remote.AuthService
 import retrofit2.Call
 import retrofit2.Callback
-import retrofit2.Response
+import retrofit2.Response as RetrofitResponse
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -43,22 +43,23 @@ class LogInFragment : Fragment() {
 
         binding?.btnLogIn?.setOnClickListener {
             val retrofit = Retrofit.Builder()
-                .baseUrl("https://causal-tracker-312605.uc.r.appspot.com/api/")
+                .baseUrl(AuthService.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
             val service = retrofit.create(AuthService::class.java)
 
             val call = service.logIn(
                 Account(
-                    binding?.edtEmail?.text.toString(),
-                    binding?.edtPassword?.text.toString(),
+                    id = null,
+                    email = binding?.edtEmail?.text.toString(),
+                    password = binding?.edtPassword?.text.toString(),
                 )
             )
 
-            call.enqueue(object : Callback<LoginResponse> {
+            call.enqueue(object : Callback<QueryResponse<Account>> {
                 override fun onResponse(
-                    call: Call<LoginResponse>,
-                    response: Response<LoginResponse>
+                    call: Call<QueryResponse<Account>>,
+                    response: RetrofitResponse<QueryResponse<Account>>
                 ) {
                     if (response.isSuccessful) {
                         if (response.body()!!.response.size == 1) {
@@ -81,7 +82,7 @@ class LogInFragment : Fragment() {
                     }
                 }
 
-                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                override fun onFailure(call: Call<QueryResponse<Account>>, t: Throwable) {
                     Log.d(TAG, t.message.toString())
                     Toast.makeText(requireContext(), t.message, Toast.LENGTH_SHORT).show()
                 }

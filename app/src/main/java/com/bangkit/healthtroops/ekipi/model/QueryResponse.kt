@@ -1,8 +1,7 @@
 package com.bangkit.healthtroops.ekipi.model
 
-data class LoginResponse(
+data class QueryResponse<T>(
     val status: Int,
     val error: String?,
-    val response: List<Account>,
-    val token: String,
+    val response: List<T>,
 )
