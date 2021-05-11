@@ -1,4 +1,4 @@
-package com.bangkit.healthtroops.ekipi.model
+package com.bangkit.healthtroops.ekipi.data
 
 data class QueryResponse<T>(
     val status: Int,

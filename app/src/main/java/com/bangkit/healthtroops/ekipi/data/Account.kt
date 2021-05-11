@@ -1,4 +1,4 @@
-package com.bangkit.healthtroops.ekipi.model
+package com.bangkit.healthtroops.ekipi.data
 
 import com.google.gson.annotations.SerializedName
 

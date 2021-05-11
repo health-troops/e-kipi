@@ -9,13 +9,13 @@ import android.widget.RadioButton
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import com.bangkit.healthtroops.ekipi.BuildConfig.BASE_URL
 import com.bangkit.healthtroops.ekipi.R
 import com.bangkit.healthtroops.ekipi.databinding.FragmentSignUpUserBinding
-import com.bangkit.healthtroops.ekipi.model.Account
-import com.bangkit.healthtroops.ekipi.model.InsertResponse
-import com.bangkit.healthtroops.ekipi.model.QueryResponse
-import com.bangkit.healthtroops.ekipi.model.User
-import com.bangkit.healthtroops.ekipi.service.remote.AuthService
+import com.bangkit.healthtroops.ekipi.data.Account
+import com.bangkit.healthtroops.ekipi.data.InsertResponse
+import com.bangkit.healthtroops.ekipi.data.User
+import com.bangkit.healthtroops.ekipi.network.AuthService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -51,7 +51,7 @@ class SignUpUserFragment : Fragment() {
                 .build()
 
             val retrofit = Retrofit.Builder()
-                .baseUrl(AuthService.BASE_URL)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()
