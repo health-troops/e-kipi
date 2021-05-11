@@ -1,4 +1,25 @@
 <resources>
     <string name="app_name">E-KIPI</string>
     <string name="riwayat">Riwayat</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="log_in">Log In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="name">Name</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="gender">Gender</string>
+    <string name="place_and_date_of_birth">Place and Date of Birth</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="mother_s_name">Mother\'s Name</string>
+    <string name="father_s_name">Father\'s Name</string>
+    <string name="province">Province</string>
+    <string name="city">City</string>
+    <string name="district">District</string>
+    <string name="sub_district">Sub-District</string>
+    <string name="address">Address</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="next">Next</string>
 </resources>
