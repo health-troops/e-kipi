@@ -1,8 +1,8 @@
-package com.bangkit.healthtroops.ekipi
+package com.bangkit.healthtroops.ekipi.ui.profile
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.bangkit.healthtroops.ekipi.ui.profile.ProfileFragment
+import androidx.appcompat.app.AppCompatActivity
+import com.bangkit.healthtroops.ekipi.R
 
 class ProfileActivity : AppCompatActivity() {
 

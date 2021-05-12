@@ -1,5 +1,7 @@
 package com.bangkit.healthtroops.ekipi.ui.profile
 
+import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -19,14 +21,19 @@ class RiwayatListAdapter: RecyclerView.Adapter<RiwayatListAdapter.Holder>() {
 //    }
 
     inner class Holder(private val binding: RiwayatItemBinding): RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         fun bind(index: Int, tanggal: String) {
-            binding.tvTitle.text = "Hari ke-$index"
+            binding.tvTitle.text = "Hari ke-${index+1}"
             binding.tvTanggal.text = tanggal
+
+            itemView.setOnClickListener {
+                Log.d("Clicked", index.toString())
+            }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val itemBinding = RiwayatItemBinding.inflate(LayoutInflater.from(parent.context))
+        val itemBinding = RiwayatItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return Holder(itemBinding)
     }
 

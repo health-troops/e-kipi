@@ -22,4 +22,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="next">Next</string>
+    <string name="data_diri">Data Diri</string>
+    <string name="my_komorbid">My Komorbid</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_profile">Profile</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.bangkit.healthtroops.ekipi.ui.profile
+package com.bangkit.healthtroops.ekipi.ui.profile.viewmodel
 
 import androidx.lifecycle.ViewModel
 

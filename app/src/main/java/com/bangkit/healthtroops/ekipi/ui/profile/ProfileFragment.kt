@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bangkit.healthtroops.ekipi.databinding.ProfileFragmentBinding
+import com.bangkit.healthtroops.ekipi.ui.profile.viewmodel.ProfileViewModel
 
 class ProfileFragment : Fragment() {
 
@@ -25,9 +26,10 @@ class ProfileFragment : Fragment() {
         binding = ProfileFragmentBinding.inflate(layoutInflater)
         return binding.root
     }
+    
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
 
         binding.tvName.text = "Leonardo"
@@ -37,7 +39,6 @@ class ProfileFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = riwayatAdapter
         }
-
     }
 
 }
