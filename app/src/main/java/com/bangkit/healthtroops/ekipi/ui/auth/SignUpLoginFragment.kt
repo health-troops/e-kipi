@@ -112,7 +112,7 @@ class SignUpLoginFragment : Fragment() {
             // validate confirm password
             binding.lytConfirmPassword.run {
                 val password = binding.edtPassword.text.toString()
-                val confirmPassword = binding.edtPassword.text.toString()
+                val confirmPassword = binding.edtConfirmPassword.text.toString()
                 val confirmPasswordLabel = getString(R.string.confirm_password)
                 if (confirmPassword.isEmpty()) {
                     error = getString(R.string.error_empty, confirmPasswordLabel)

@@ -24,5 +24,6 @@
 
     <string name="error_empty">%s is empty</string>
     <string name="error_invalid">%s is invalid</string>
-    <string name="error_confirm_password_wrong">The password and confirmation password is not the same</string>
+    <string name="error_confirm_password_wrong">The password and confirm password is not the same</string>
+    <string name="error_date">%1$s is not in date format %2$s</string>
 </resources>
