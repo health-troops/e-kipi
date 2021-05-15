@@ -51,11 +51,17 @@ class LogInFragment : Fragment() {
             binding.edtPassword.addTextChangedListener { binding.lytPassword.error = null }
 
             viewModel.getStatus().observe(requireActivity()) { status ->
-                if (status.status == RemoteResponse.Status.ERROR) {
-                    Toast.makeText(requireContext(), status.errorMessage, Toast.LENGTH_LONG).show()
-                } else {
-                    view.findNavController()
-                        .navigate(R.id.action_logInFragment_to_homeActivity)
+                when (status.status) {
+                    RemoteResponse.Status.SUCCESS -> {
+                        view.findNavController()
+                            .navigate(R.id.action_logInFragment_to_homeActivity)
+                    }
+                    RemoteResponse.Status.ERROR -> {
+                        Toast.makeText(requireContext(), status.errorMessage, Toast.LENGTH_LONG).show()
+                    }
+                    RemoteResponse.Status.LOADING -> {
+                        Toast.makeText(requireContext(), "Loading", Toast.LENGTH_LONG).show()
+                    }
                 }
             }
         }
@@ -98,7 +104,6 @@ class LogInFragment : Fragment() {
             }
 
             return valid
-
         }
         return false
     }

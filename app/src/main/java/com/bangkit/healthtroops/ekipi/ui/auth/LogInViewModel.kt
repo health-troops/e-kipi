@@ -23,6 +23,7 @@ class LogInViewModel @Inject constructor(private val authService: AuthService) :
     private val status = MutableLiveData<RemoteResponse>()
 
     fun logIn(email: String, password: String) {
+        status.postValue(RemoteResponse.loading())
         val call = authService.logIn(
             Account(null, email, password)
         )
