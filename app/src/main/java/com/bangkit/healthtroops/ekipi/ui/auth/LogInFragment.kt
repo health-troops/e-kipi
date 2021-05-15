@@ -50,7 +50,7 @@ class LogInFragment : Fragment() {
             binding.edtEmail.addTextChangedListener { binding.lytEmail.error = null }
             binding.edtPassword.addTextChangedListener { binding.lytPassword.error = null }
 
-            viewModel.getStatus().observe(requireActivity()) { status ->
+            viewModel.getResponse().observe(requireActivity()) { status ->
                 when (status.status) {
                     RemoteResponse.Status.SUCCESS -> {
                         view.findNavController()

@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class User(
     @SerializedName("id_account")
-    val accountId: Int,
+    var accountId: Int,
     @SerializedName("nama")
     val name: String,
     val gender: String,

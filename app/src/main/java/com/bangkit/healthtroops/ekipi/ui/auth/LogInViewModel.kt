@@ -20,10 +20,10 @@ class LogInViewModel @Inject constructor(private val authService: AuthService) :
         private const val TAG = "LogInViewModel"
     }
 
-    private val status = MutableLiveData<RemoteResponse>()
+    private val remoteResponse = MutableLiveData<RemoteResponse>()
 
     fun logIn(email: String, password: String) {
-        status.postValue(RemoteResponse.loading())
+        remoteResponse.postValue(RemoteResponse.loading())
         val call = authService.logIn(
             Account(null, email, password)
         )
@@ -35,22 +35,22 @@ class LogInViewModel @Inject constructor(private val authService: AuthService) :
             ) {
                 if (response.isSuccessful) {
                     if (response.body()!!.response.size == 1) {
-                        status.postValue(RemoteResponse.success())
+                        remoteResponse.postValue(RemoteResponse.success())
                     } else {
-                        status.postValue(RemoteResponse.error("The email of password is incorrect"))
+                        remoteResponse.postValue(RemoteResponse.error("The email or password is incorrect"))
                     }
                 } else {
                     Log.d(TAG, "onResponse: ${response.raw()}")
-                    status.postValue(RemoteResponse.error("not success: ${response.code()} = ${response.raw()}"))
+                    remoteResponse.postValue(RemoteResponse.error("not success: ${response.code()} = ${response.raw()}"))
                 }
             }
 
             override fun onFailure(call: Call<QueryResponse<Account>>, t: Throwable) {
                 Log.d(TAG, t.message.toString())
-                status.postValue(RemoteResponse.error("on Failure"))
+                remoteResponse.postValue(RemoteResponse.error("on Failure"))
             }
         })
     }
 
-    fun getStatus(): LiveData<RemoteResponse> = status
+    fun getResponse(): LiveData<RemoteResponse> = remoteResponse
 }
