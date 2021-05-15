@@ -24,7 +24,6 @@ import java.util.*
 @AndroidEntryPoint
 class SignUpUserFragment : Fragment() {
     companion object {
-        private const val TAG = "SignUpUserFragment"
         const val EXTRA_NAME = "extra_name"
         const val EXTRA_EMAIL = "extra_email"
         const val EXTRA_PASSWORD = "extra_password"
@@ -44,6 +43,7 @@ class SignUpUserFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding?.let { binding ->
+            binding.lytPlaceOfBirth.clearErrorOnTextChanged()
             binding.lytTtl.clearErrorOnTextChanged()
             binding.lytPhoneNumber.clearErrorOnTextChanged()
             binding.lytMotherSName.clearErrorOnTextChanged()
@@ -66,7 +66,8 @@ class SignUpUserFragment : Fragment() {
                         accountId = 0,
                         name = arguments?.getString(EXTRA_NAME)!!,
                         gender = getGender(view)!!,
-                        ttl = binding.edtTtl.text.toString(),
+                        placeOfBirth = binding.edtPlaceOfBirth.text.toString(),
+                        ttl = getFormattedDate(),
                         noHp = binding.edtPhoneNumber.text.toString(),
                         mothersName = binding.edtMotherSName.text.toString(),
                         fathersName = binding.edtFatherSName.text.toString(),
@@ -116,6 +117,13 @@ class SignUpUserFragment : Fragment() {
         return null
     }
 
+    private fun getFormattedDate(): String {
+        val parser = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val date = parser.parse(binding!!.edtTtl.text.toString())!!
+        val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        return formatter.format(date)
+    }
+
     private fun TextInputLayout.clearErrorOnTextChanged() {
         editText?.addTextChangedListener {
             isErrorEnabled = false
@@ -136,10 +144,10 @@ class SignUpUserFragment : Fragment() {
         val input = editText?.text.toString()
         val label = editText?.hint.toString()
         try {
-            val formatter = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+            val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
             formatter.parse(input)
         } catch (e: ParseException) {
-            error = getString(R.string.error_date, label, "DD-MM-YYYY")
+            error = getString(R.string.error_date, label, "DD/MM/YYYY")
             return false
         }
         return true
@@ -148,6 +156,7 @@ class SignUpUserFragment : Fragment() {
     private fun isValid(view: View): Boolean {
         binding?.let { binding ->
             var valid = getGender(view) != null
+            valid = binding.lytPlaceOfBirth.isNotEmpty() && valid
             valid = binding.lytTtl.isNotEmpty() && binding.lytTtl.isDate() && valid
             valid = binding.lytPhoneNumber.isNotEmpty() && valid
             valid = binding.lytMotherSName.isNotEmpty() && valid

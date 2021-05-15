@@ -53,7 +53,7 @@
         </RadioGroup>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/lyt_ttl"
+            android:id="@+id/lyt_place_of_birth"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -62,11 +62,28 @@
             app:layout_constraintTop_toBottomOf="@id/rg_gender">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_place_of_birth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/place_of_birth"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/lyt_ttl"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lyt_place_of_birth">
+
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_ttl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/place_and_date_of_birth"
-                android:inputType="text" />
+                android:hint="@string/date_of_birth"
+                android:inputType="date" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -83,7 +100,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/phone_number"
-                android:inputType="text" />
+                android:inputType="phone" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
