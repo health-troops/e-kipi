@@ -9,7 +9,8 @@
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="gender">Gender</string>
-    <string name="place_and_date_of_birth">Place and Date of Birth</string>
+    <string name="place_of_birth">Place of Birth</string>
+    <string name="date_of_birth">Date of Birth</string>
     <string name="phone_number">Phone Number</string>
     <string name="mother_s_name">Mother\'s Name</string>
     <string name="father_s_name">Father\'s Name</string>
@@ -22,6 +23,12 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="next">Next</string>
+
+    <string name="error_empty">%s is empty</string>
+    <string name="error_invalid">%s is invalid</string>
+    <string name="error_confirm_password_wrong">The password and confirm password is not the same</string>
+    <string name="error_date">%1$s is not in date format %2$s</string>
+  
     <string name="data_diri">Data Diri</string>
     <string name="my_komorbid">My Komorbid</string>
     <string name="title_activity_test">TestActivity</string>
