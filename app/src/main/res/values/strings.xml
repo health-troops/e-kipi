@@ -28,11 +28,35 @@
     <string name="error_invalid">%s is invalid</string>
     <string name="error_confirm_password_wrong">The password and confirm password is not the same</string>
     <string name="error_date">%1$s is not in date format %2$s</string>
-  
+
     <string name="data_diri">Data Diri</string>
     <string name="my_komorbid">My Komorbid</string>
     <string name="title_activity_test">TestActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_profile">Profile</string>
+
+    <string name="comorbid_prompt">Adakah Penyakit bawaan yang anda idap selama ini?</string>
+    <string-array name="comorbid_symptoms">
+        <item>Hipertensi</item>
+        <item>Diabetes melitus</item>
+        <item>Gagal jantung</item>
+        <item>Jantung koroner</item>
+        <item>Penyakit paru obstruktif knonis</item>
+        <item>Asma</item>
+        <item>Penyakit hati</item>
+        <item>TBC</item>
+        <item>Penyakit autoimun (lupus/Sjogren/vaskulitis)</item>
+        <item>Kanker</item>
+        <item>HIV</item>
+        <item>Alergi obat</item>
+        <item>Penyalit kelainan darah</item>
+        <item>Hipertiroid/hipotiroid</item>
+        <item>Penyakit ginjal</item>
+        <item>Dermatitis atopi</item>
+        <item>Reaksi anafilaksis (bukan akibat vaksinasi covid)</item>
+        <item>Urtikaria</item>
+        <item>Alergi makanan</item>
+        <item>Interstitial lung disease</item>
+    </string-array>
 </resources>
