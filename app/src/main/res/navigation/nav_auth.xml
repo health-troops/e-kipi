@@ -10,8 +10,8 @@
         android:label="fragment_sign_up_user"
         tools:layout="@layout/fragment_sign_up_user" >
         <action
-            android:id="@+id/action_signUpUserFragment_to_homeActivity"
-            app:destination="@id/homeActivity" />
+            android:id="@+id/action_signUpUserFragment_to_signUpComorbidFragment"
+            app:destination="@id/signUpComorbidFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpLoginFragment"
@@ -39,4 +39,13 @@
         android:name="com.bangkit.healthtroops.ekipi.ui.home.HomeActivity"
         android:label="activity_home"
         tools:layout="@layout/activity_home" />
+    <fragment
+        android:id="@+id/signUpComorbidFragment"
+        android:name="com.bangkit.healthtroops.ekipi.ui.comorbid.SignUpComorbidFragment"
+        android:label="fragment_sign_up_comorbid"
+        tools:layout="@layout/fragment_sign_up_comorbid" >
+        <action
+            android:id="@+id/action_signUpComorbidFragment_to_homeActivity"
+            app:destination="@id/homeActivity" />
+    </fragment>
 </navigation>

@@ -16,14 +16,12 @@ class AuthActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        checkLoginStatus()
-
         setContentView(R.layout.activity_auth)
+        checkLoginStatus()
     }
 
     private fun checkLoginStatus() {
-        if (sharedPref.getString(AUTH_EMAIL, null) == null) {
+        if (sharedPref.getString(AUTH_EMAIL, null) != null) {
             val intent = Intent(this, HomeActivity::class.java).apply {
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
