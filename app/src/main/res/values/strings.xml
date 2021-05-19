@@ -39,6 +39,7 @@
     <string name="comorbid_prompt">Adakah Penyakit bawaan yang anda idap selama ini?</string>
     <string name="save">Save</string>
     <string name="health_check">Health Check</string>
+    <string name="logout">Logout</string>
     <string-array name="comorbid_symptoms">
         <item>Hipertensi</item>
         <item>Diabetes melitus</item>
