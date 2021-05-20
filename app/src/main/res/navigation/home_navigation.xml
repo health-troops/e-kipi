@@ -26,6 +26,14 @@
         android:id="@+id/navigation_profile"
         android:name="com.bangkit.healthtroops.ekipi.ui.profile.ProfileFragment"
         android:label="profile_fragment"
-        tools:layout="@layout/profile_fragment" />
+        tools:layout="@layout/profile_fragment" >
+        <action
+            android:id="@+id/action_navigation_profile_to_profileEditActivity"
+            app:destination="@id/profileEditActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/profileEditActivity"
+        android:name="com.bangkit.healthtroops.ekipi.ui.profileedit.ProfileEditActivity"
+        android:label="ProfileEditActivity" />
 
 </navigation>
