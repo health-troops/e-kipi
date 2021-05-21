@@ -24,7 +24,7 @@
 
         <TextView
             android:id="@+id/tv_label_sign_up"
-            style="@style/TextAppearance.MaterialComponents.Headline4"
+            style="@style/Heading1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
@@ -68,7 +68,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_label_gender">
 
-            <com.google.android.material.radiobutton.MaterialRadioButton
+            <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="2"

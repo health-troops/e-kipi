@@ -1,5 +1,7 @@
 package com.bangkit.healthtroops.ekipi.ui.auth
 
+import android.content.SharedPreferences
+import androidx.core.content.edit
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,7 +17,10 @@ import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
-class SignUpViewModel @Inject constructor(private val authService: AuthService) : ViewModel() {
+class SignUpViewModel @Inject constructor(
+    private val authService: AuthService,
+    private val sharedPref: SharedPreferences
+) : ViewModel() {
     private val remoteResponse = MutableLiveData<RemoteResponse>()
 
     fun getResponse(): LiveData<RemoteResponse> = remoteResponse
@@ -31,7 +36,7 @@ class SignUpViewModel @Inject constructor(private val authService: AuthService) 
             ) {
                 if (response.isSuccessful) {
                     user.accountId = response.body()!!.response.insertId
-                    registerUser(user)
+                    registerUser(user, account.email)
                 } else {
                     remoteResponse.postValue(RemoteResponse.error("Failed register account"))
                 }
@@ -43,7 +48,7 @@ class SignUpViewModel @Inject constructor(private val authService: AuthService) 
         })
     }
 
-    private fun registerUser(user: User) {
+    private fun registerUser(user: User, email: String) {
         val call = authService.registerUser(user)
 
         call.enqueue(object : Callback<InsertResponse> {
@@ -52,6 +57,9 @@ class SignUpViewModel @Inject constructor(private val authService: AuthService) 
                 response: Response<InsertResponse>
             ) {
                 if (response.isSuccessful) {
+                    sharedPref.edit {
+                        putString(AuthActivity.AUTH_EMAIL, email)
+                    }
                     remoteResponse.postValue(RemoteResponse.success())
                 } else {
                     remoteResponse.postValue(RemoteResponse.error("Failed register user"))
@@ -62,9 +70,5 @@ class SignUpViewModel @Inject constructor(private val authService: AuthService) 
                 remoteResponse.postValue(RemoteResponse.error("onFailure"))
             }
         })
-    }
-
-    companion object {
-        private const val TAG = "SignUpViewModel"
     }
 }
