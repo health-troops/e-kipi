@@ -1,6 +1,8 @@
 package com.bangkit.healthtroops.ekipi.ui.auth
 
+import android.content.SharedPreferences
 import android.util.Log
+import androidx.core.content.edit
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,7 +17,10 @@ import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
-class LogInViewModel @Inject constructor(private val authService: AuthService) : ViewModel() {
+class LogInViewModel @Inject constructor(
+    private val authService: AuthService,
+    private val sharedPref: SharedPreferences
+) : ViewModel() {
     companion object {
         private const val TAG = "LogInViewModel"
     }
@@ -35,6 +40,9 @@ class LogInViewModel @Inject constructor(private val authService: AuthService) :
             ) {
                 if (response.isSuccessful) {
                     if (response.body()!!.response.size == 1) {
+                        sharedPref.edit {
+                            putString(AuthActivity.AUTH_EMAIL, email)
+                        }
                         remoteResponse.postValue(RemoteResponse.success())
                     } else {
                         remoteResponse.postValue(RemoteResponse.error("The email or password is incorrect"))

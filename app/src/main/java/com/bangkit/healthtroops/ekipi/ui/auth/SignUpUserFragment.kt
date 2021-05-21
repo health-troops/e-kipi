@@ -86,7 +86,7 @@ class SignUpUserFragment : Fragment() {
                 when (it.status) {
                     RemoteResponse.Status.SUCCESS ->
                         view.findNavController()
-                            .navigate(R.id.action_signUpUserFragment_to_homeActivity)
+                            .navigate(R.id.action_signUpUserFragment_to_signUpComorbidFragment)
                     RemoteResponse.Status.ERROR ->
                         Toast.makeText(context, it.errorMessage, Toast.LENGTH_LONG).show()
                     RemoteResponse.Status.LOADING -> {

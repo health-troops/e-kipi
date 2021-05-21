@@ -26,6 +26,15 @@
         android:id="@+id/navigation_profile"
         android:name="com.bangkit.healthtroops.ekipi.ui.profile.ProfileFragment"
         android:label="profile_fragment"
-        tools:layout="@layout/profile_fragment" />
+        tools:layout="@layout/profile_fragment" >
+        <action
+            android:id="@+id/action_navigation_profile_to_signUpComorbidFragment2"
+            app:destination="@id/signUpComorbidFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpComorbidFragment2"
+        android:name="com.bangkit.healthtroops.ekipi.ui.comorbid.SignUpComorbidFragment"
+        android:label="fragment_sign_up_comorbid"
+        tools:layout="@layout/fragment_sign_up_comorbid" />
 
 </navigation>
