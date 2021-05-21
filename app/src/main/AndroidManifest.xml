@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EKIPI"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ui.dailyform.DailyFormActivity"></activity>
         <!-- should disable usesCleartextTraffic in release -->
         <activity android:name=".ui.profileedit.ProfileEditActivity" />
         <activity android:name=".ui.profile.ProfileActivity" />

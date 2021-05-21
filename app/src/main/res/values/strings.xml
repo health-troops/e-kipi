@@ -40,6 +40,8 @@
     <string name="save">Save</string>
     <string name="health_check">Health Check</string>
     <string name="logout">Logout</string>
+    <string name="daily_form">Daily Form</string>
+    <string name="daily_checkup">Daily Checkup</string>
     <string-array name="comorbid_symptoms">
         <item>Hipertensi</item>
         <item>Diabetes melitus</item>
