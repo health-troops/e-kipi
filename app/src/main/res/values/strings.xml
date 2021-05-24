@@ -40,6 +40,7 @@
     <string name="save">Save</string>
     <string name="health_check">Health Check</string>
     <string name="logout">Logout</string>
+    <string name="skip">Lewati</string>
     <string-array name="comorbid_symptoms">
         <item>Hipertensi</item>
         <item>Diabetes melitus</item>

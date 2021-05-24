@@ -3,6 +3,7 @@ package com.bangkit.healthtroops.ekipi.ui.auth
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.bangkit.healthtroops.ekipi.R
+import com.bangkit.healthtroops.ekipi.databinding.ActivityAuthBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
