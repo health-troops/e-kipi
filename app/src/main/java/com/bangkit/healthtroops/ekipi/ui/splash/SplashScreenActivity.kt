@@ -25,7 +25,7 @@ class SplashScreenActivity : AppCompatActivity() {
     }
 
     private fun checkLoginStatus() {
-        if (sharedPref.getString(AuthActivity.AUTH_EMAIL, null) != null) {
+        if (sharedPref.getInt(AuthActivity.AUTH_ID, -1) != -1) {
             val intent = Intent(this, HomeActivity::class.java).apply {
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)

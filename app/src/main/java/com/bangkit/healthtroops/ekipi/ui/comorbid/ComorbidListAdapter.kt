@@ -9,6 +9,7 @@ import com.bangkit.healthtroops.ekipi.databinding.ItemComorbidCheckboxBinding
 class ComorbidListAdapter : RecyclerView.Adapter<ComorbidListAdapter.ListViewHolder>() {
 
     private val symptoms = ArrayList<ComorbidSymptom>()
+    val values = ArrayList<Boolean>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val binding =
@@ -17,7 +18,7 @@ class ComorbidListAdapter : RecyclerView.Adapter<ComorbidListAdapter.ListViewHol
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        holder.bind(symptoms[position])
+        holder.bind(symptoms[position], position)
     }
 
     override fun getItemCount(): Int {
@@ -27,13 +28,21 @@ class ComorbidListAdapter : RecyclerView.Adapter<ComorbidListAdapter.ListViewHol
     fun setData(items: List<ComorbidSymptom>) {
         symptoms.clear()
         symptoms.addAll(items)
+        values.clear()
+        for (x in 1..itemCount) {
+            values.add(false)
+        }
+
         notifyDataSetChanged()
     }
 
     inner class ListViewHolder(private val binding: ItemComorbidCheckboxBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(symptom: ComorbidSymptom) {
+        fun bind(symptom: ComorbidSymptom, position: Int) {
             binding.chkComorbid.text = symptom.name
+            binding.chkComorbid.setOnCheckedChangeListener { _, b ->
+                values[position] = b
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.bangkit.healthtroops.ekipi.ui.comorbid
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,11 +9,19 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import com.bangkit.healthtroops.ekipi.data.ComorbidResponse
 import com.bangkit.healthtroops.ekipi.databinding.FragmentSignUpComorbidBinding
+import com.bangkit.healthtroops.ekipi.ui.auth.AuthActivity
 import com.bangkit.healthtroops.ekipi.ui.home.HomeActivity
 import com.bangkit.healthtroops.ekipi.utils.DummyData
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class SignUpComorbidFragment : Fragment() {
+    @Inject
+    lateinit var sharedPref: SharedPreferences
+
     private var binding: FragmentSignUpComorbidBinding? = null
     private val viewModel by viewModels<SignUpComorbidViewModel>()
 
@@ -35,6 +44,35 @@ class SignUpComorbidFragment : Fragment() {
             rvComorbid.apply {
                 layoutManager = GridLayoutManager(requireContext(), 2)
                 this.adapter = adapter
+            }
+
+            btnSave.setOnClickListener {
+                val accountId = sharedPref.getInt(AuthActivity.AUTH_ID, 0)
+                viewModel.insertComorbid(
+                    ComorbidResponse(
+                        accountId,
+                        adapter.values[0],
+                        adapter.values[1],
+                        adapter.values[2],
+                        adapter.values[3],
+                        adapter.values[4],
+                        adapter.values[5],
+                        adapter.values[6],
+                        adapter.values[7],
+                        adapter.values[8],
+                        adapter.values[9],
+                        adapter.values[10],
+                        adapter.values[11],
+                        adapter.values[12],
+                        adapter.values[13],
+                        adapter.values[14],
+                        adapter.values[15],
+                        adapter.values[16],
+                        adapter.values[17],
+                        adapter.values[18],
+                        adapter.values[19],
+                    )
+                )
             }
 
             btnSkip.setOnClickListener {
