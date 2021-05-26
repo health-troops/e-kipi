@@ -9,8 +9,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import com.bangkit.healthtroops.ekipi.data.ComorbidResponse
+import com.bangkit.healthtroops.ekipi.data.RemoteResponse
 import com.bangkit.healthtroops.ekipi.databinding.FragmentSignUpComorbidBinding
+import com.bangkit.healthtroops.ekipi.domain.model.ComorbidData
 import com.bangkit.healthtroops.ekipi.ui.auth.AuthActivity
 import com.bangkit.healthtroops.ekipi.ui.home.HomeActivity
 import com.bangkit.healthtroops.ekipi.utils.DummyData
@@ -40,6 +41,11 @@ class SignUpComorbidFragment : Fragment() {
             setData(DummyData.generateComorbidSymptoms(requireContext()))
         }
 
+        viewModel.getComorbid()
+        viewModel.getComorbidResponse().observe(viewLifecycleOwner) {
+            adapter.setValues(it)
+        }
+
         binding?.apply {
             rvComorbid.apply {
                 layoutManager = GridLayoutManager(requireContext(), 2)
@@ -48,8 +54,8 @@ class SignUpComorbidFragment : Fragment() {
 
             btnSave.setOnClickListener {
                 val accountId = sharedPref.getInt(AuthActivity.AUTH_ID, 0)
-                viewModel.insertComorbid(
-                    ComorbidResponse(
+                viewModel.saveComorbid(
+                    ComorbidData(
                         accountId,
                         adapter.values[0],
                         adapter.values[1],
@@ -77,6 +83,16 @@ class SignUpComorbidFragment : Fragment() {
 
             btnSkip.setOnClickListener {
                 navigateToHome()
+            }
+        }
+
+        viewModel.getRemoteResponse().observe(viewLifecycleOwner) {
+            when (it.status) {
+                RemoteResponse.Status.SUCCESS -> {
+                    navigateToHome()
+                }
+                else -> {
+                }
             }
         }
     }
