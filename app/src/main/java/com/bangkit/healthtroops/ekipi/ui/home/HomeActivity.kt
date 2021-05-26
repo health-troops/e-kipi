@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import androidx.navigation.findNavController
@@ -14,6 +15,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.bangkit.healthtroops.ekipi.R
 import com.bangkit.healthtroops.ekipi.databinding.ActivityHomeBinding
 import com.bangkit.healthtroops.ekipi.ui.auth.AuthActivity
+import com.bangkit.healthtroops.ekipi.ui.camera.CameraActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -23,10 +25,17 @@ class HomeActivity : AppCompatActivity() {
     lateinit var sharedPref: SharedPreferences
 
     private lateinit var binding: ActivityHomeBinding
+    private lateinit var bt4: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        bt4 = findViewById(R.id.button4)
+        bt4.setOnClickListener{
+            val intent = Intent(this, CameraActivity::class.java)
+            startActivity(intent)
+        }
 
         val navBar = binding.navigationBar
         val navController = findNavController(R.id.home_nav_host_fragment)
@@ -39,6 +48,8 @@ class HomeActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navBar.setupWithNavController(navController)
+
+
 
     }
 
