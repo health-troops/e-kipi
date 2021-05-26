@@ -46,10 +46,10 @@ class RemoteDataSource @Inject constructor(
                     if (registerUser.error == null) {
                         emit(ApiResponse.Success(accountId))
                     } else {
-                        emit(ApiResponse.Error(registerUser.error))
+                        emit(ApiResponse.Error(registerUser.error.sqlMessage))
                     }
                 } else {
-                    emit(ApiResponse.Error(registerAccount.error))
+                    emit(ApiResponse.Error(registerAccount.error.sqlMessage))
                 }
             } catch (e: Exception) {
                 emit(ApiResponse.Error(e.toString()))

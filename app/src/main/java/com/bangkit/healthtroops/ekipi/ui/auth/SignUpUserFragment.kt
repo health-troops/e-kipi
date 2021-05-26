@@ -23,11 +23,6 @@ import java.util.*
 
 @AndroidEntryPoint
 class SignUpUserFragment : Fragment() {
-    companion object {
-        const val EXTRA_NAME = "extra_name"
-        const val EXTRA_EMAIL = "extra_email"
-        const val EXTRA_PASSWORD = "extra_password"
-    }
 
     private var binding: FragmentSignUpUserBinding? = null
     private val viewModel by viewModels<SignUpViewModel>()
@@ -79,18 +74,26 @@ class SignUpUserFragment : Fragment() {
                     )
 
                     viewModel.register(user, account)
+                } else {
+                    Toast.makeText(requireContext(), "Form is invalid", Toast.LENGTH_SHORT).show()
                 }
             }
 
-            viewModel.getResponse().observe(viewLifecycleOwner) {
+            viewModel.getResponse().observe(requireActivity()) {
                 when (it) {
-                    is Resource.Success ->
+                    is Resource.Success -> {
+                        binding.progressBar.hide()
                         view.findNavController()
                             .navigate(R.id.action_signUpUserFragment_to_signUpComorbidFragment)
-                    is Resource.Error ->
-                        Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
+                    }
+                    is Resource.Error -> {
+                        binding.progressBar.hide()
+                        if (it.isNotShowed())
+                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                        it.setShowed()
+                    }
                     is Resource.Loading -> {
-                        Toast.makeText(context, "Loading", Toast.LENGTH_SHORT).show()
+                        binding.progressBar.show()
                     }
                 }
             }
@@ -170,5 +173,11 @@ class SignUpUserFragment : Fragment() {
             return valid
         }
         return false
+    }
+
+    companion object {
+        const val EXTRA_NAME = "extra_name"
+        const val EXTRA_EMAIL = "extra_email"
+        const val EXTRA_PASSWORD = "extra_password"
     }
 }

@@ -1,24 +1,16 @@
 package com.bangkit.healthtroops.ekipi.ui.auth
 
-import android.content.SharedPreferences
-import androidx.core.content.edit
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bangkit.healthtroops.ekipi.data.KipiRepository
-import com.bangkit.healthtroops.ekipi.data.source.remote.response.AccountResponse
-import com.bangkit.healthtroops.ekipi.data.source.remote.response.InsertResponse
-import com.bangkit.healthtroops.ekipi.data.RemoteResponse
 import com.bangkit.healthtroops.ekipi.data.Resource
+import com.bangkit.healthtroops.ekipi.data.source.remote.response.AccountResponse
 import com.bangkit.healthtroops.ekipi.data.source.remote.response.UserResponse
-import com.bangkit.healthtroops.ekipi.data.source.remote.network.AuthService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel

@@ -55,7 +55,10 @@ class LogInFragment : Fragment() {
                     }
                     is Resource.Error -> {
                         binding.progressBar.hide()
-                        Toast.makeText(requireContext(), resource.message, Toast.LENGTH_LONG).show()
+                        if (resource.isNotShowed())
+                            Toast.makeText(requireContext(), resource.message, Toast.LENGTH_SHORT)
+                                .show()
+                        resource.setShowed()
                     }
                     is Resource.Loading -> {
                         binding.progressBar.show()

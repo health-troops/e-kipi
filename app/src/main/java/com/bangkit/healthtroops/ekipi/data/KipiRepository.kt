@@ -40,7 +40,7 @@ class KipiRepository @Inject constructor(
                     emit(Resource.Error("wrong username or password"))
                 }
                 is ApiResponse.Error -> {
-                    emit(Resource.Error("error"))
+                    emit(Resource.Error(account.errorMessage))
                 }
             }
         }
