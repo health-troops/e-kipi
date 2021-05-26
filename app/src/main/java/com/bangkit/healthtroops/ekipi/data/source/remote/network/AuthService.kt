@@ -10,7 +10,7 @@ import retrofit2.http.POST
 
 interface AuthService {
     @POST("api/login")
-    fun logIn(@Body body: AccountResponse): Call<QueryResponse<AccountResponse>>
+    suspend fun logIn(@Body body: AccountResponse): QueryResponse<AccountResponse>
 
     @POST("api/users")
     fun registerUser(@Body body: UserResponse): Call<InsertResponse>

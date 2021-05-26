@@ -1,28 +1,28 @@
 package com.bangkit.healthtroops.ekipi.ui.auth
 
-import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.edit
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.ActivityNavigator
-import androidx.navigation.ActivityNavigatorExtras
 import androidx.navigation.findNavController
 import com.bangkit.healthtroops.ekipi.R
-import com.bangkit.healthtroops.ekipi.data.RemoteResponse
+import com.bangkit.healthtroops.ekipi.data.Resource
 import com.bangkit.healthtroops.ekipi.databinding.FragmentLogInBinding
 import com.bangkit.healthtroops.ekipi.utils.Validator
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class LogInFragment : Fragment() {
-    companion object {
-        private const val TAG = "LogInFragment"
-    }
+
+    @Inject
+    lateinit var sharedPref: SharedPreferences
 
     private var binding: FragmentLogInBinding? = null
     private val viewModel by viewModels<LogInViewModel>()
@@ -53,17 +53,26 @@ class LogInFragment : Fragment() {
             binding.edtEmail.addTextChangedListener { binding.lytEmail.error = null }
             binding.edtPassword.addTextChangedListener { binding.lytPassword.error = null }
 
-            viewModel.getResponse().observe(requireActivity()) { status ->
-                when (status.status) {
-                    RemoteResponse.Status.SUCCESS -> {
-                        view.findNavController()
-                            .navigate(R.id.action_logInFragment_to_homeActivity)
+            viewModel.getResponse().observe(requireActivity()) { resource ->
+                when (resource) {
+                    is Resource.Success -> {
+                        val email = resource.data?.email
+                        val accountId = resource.data?.id
+
+                        if (email != null && accountId != null) {
+                            sharedPref.edit {
+                                putString(AuthActivity.AUTH_EMAIL, email)
+                                putInt(AuthActivity.AUTH_ID, accountId)
+                            }
+                            view.findNavController()
+                                .navigate(R.id.action_logInFragment_to_homeActivity)
+                        }
                     }
-                    RemoteResponse.Status.ERROR -> {
-                        Toast.makeText(requireContext(), status.errorMessage, Toast.LENGTH_LONG).show()
+                    is Resource.Error -> {
+                        Toast.makeText(requireContext(), resource.message, Toast.LENGTH_LONG).show()
                     }
-                    RemoteResponse.Status.LOADING -> {
-                        Toast.makeText(requireContext(), "Loading", Toast.LENGTH_LONG).show()
+                    else -> {
+
                     }
                 }
             }
