@@ -11,8 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.bangkit.healthtroops.ekipi.R
+import com.bangkit.healthtroops.ekipi.data.Resource
 import com.bangkit.healthtroops.ekipi.data.source.remote.response.AccountResponse
-import com.bangkit.healthtroops.ekipi.data.RemoteResponse
 import com.bangkit.healthtroops.ekipi.data.source.remote.response.UserResponse
 import com.bangkit.healthtroops.ekipi.databinding.FragmentSignUpUserBinding
 import com.google.android.material.textfield.TextInputLayout
@@ -83,13 +83,13 @@ class SignUpUserFragment : Fragment() {
             }
 
             viewModel.getResponse().observe(viewLifecycleOwner) {
-                when (it.status) {
-                    RemoteResponse.Status.SUCCESS ->
+                when (it) {
+                    is Resource.Success ->
                         view.findNavController()
                             .navigate(R.id.action_signUpUserFragment_to_signUpComorbidFragment)
-                    RemoteResponse.Status.ERROR ->
-                        Toast.makeText(context, it.errorMessage, Toast.LENGTH_LONG).show()
-                    RemoteResponse.Status.LOADING -> {
+                    is Resource.Error ->
+                        Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
+                    is Resource.Loading -> {
                         Toast.makeText(context, "Loading", Toast.LENGTH_SHORT).show()
                     }
                 }

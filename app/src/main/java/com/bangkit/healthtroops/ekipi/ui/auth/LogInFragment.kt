@@ -1,12 +1,10 @@
 package com.bangkit.healthtroops.ekipi.ui.auth
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.edit
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -16,14 +14,9 @@ import com.bangkit.healthtroops.ekipi.data.Resource
 import com.bangkit.healthtroops.ekipi.databinding.FragmentLogInBinding
 import com.bangkit.healthtroops.ekipi.utils.Validator
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class LogInFragment : Fragment() {
-
-    @Inject
-    lateinit var sharedPref: SharedPreferences
-
     private var binding: FragmentLogInBinding? = null
     private val viewModel by viewModels<LogInViewModel>()
 
@@ -57,17 +50,8 @@ class LogInFragment : Fragment() {
                 when (resource) {
                     is Resource.Success -> {
                         binding.progressBar.hide()
-                        val email = resource.data?.email
-                        val accountId = resource.data?.id
-
-                        if (email != null && accountId != null) {
-                            sharedPref.edit {
-                                putString(AuthActivity.AUTH_EMAIL, email)
-                                putInt(AuthActivity.AUTH_ID, accountId)
-                            }
-                            view.findNavController()
-                                .navigate(R.id.action_logInFragment_to_homeActivity)
-                        }
+                        view.findNavController()
+                            .navigate(R.id.action_logInFragment_to_homeActivity)
                     }
                     is Resource.Error -> {
                         binding.progressBar.hide()

@@ -13,8 +13,8 @@ interface AuthService {
     suspend fun logIn(@Body body: AccountResponse): QueryResponse<AccountResponse>
 
     @POST("api/users")
-    fun registerUser(@Body body: UserResponse): Call<InsertResponse>
+    suspend fun registerUser(@Body body: UserResponse): InsertResponse
 
     @POST("api/register")
-    fun registerAccount(@Body body: AccountResponse): Call<InsertResponse>
+    suspend fun registerAccount(@Body body: AccountResponse): InsertResponse
 }
