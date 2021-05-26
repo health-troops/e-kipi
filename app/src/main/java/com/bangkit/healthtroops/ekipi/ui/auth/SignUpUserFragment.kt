@@ -11,9 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.bangkit.healthtroops.ekipi.R
-import com.bangkit.healthtroops.ekipi.data.Account
+import com.bangkit.healthtroops.ekipi.data.source.remote.response.AccountResponse
 import com.bangkit.healthtroops.ekipi.data.RemoteResponse
-import com.bangkit.healthtroops.ekipi.data.User
+import com.bangkit.healthtroops.ekipi.data.source.remote.response.UserResponse
 import com.bangkit.healthtroops.ekipi.databinding.FragmentSignUpUserBinding
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
@@ -56,13 +56,13 @@ class SignUpUserFragment : Fragment() {
 
             binding.btnSignUp.setOnClickListener {
                 if (isValid(view)) {
-                    val account = Account(
+                    val account = AccountResponse(
                         id = null,
                         email = arguments?.getString(EXTRA_EMAIL)!!,
                         password = arguments?.getString(EXTRA_PASSWORD)!!,
                     )
 
-                    val user = User(
+                    val user = UserResponse(
                         accountId = 0,
                         name = arguments?.getString(EXTRA_NAME)!!,
                         gender = getGender(view)!!,

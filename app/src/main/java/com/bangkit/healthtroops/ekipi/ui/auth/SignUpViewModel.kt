@@ -5,11 +5,11 @@ import androidx.core.content.edit
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.bangkit.healthtroops.ekipi.data.Account
-import com.bangkit.healthtroops.ekipi.data.InsertResponse
+import com.bangkit.healthtroops.ekipi.data.source.remote.response.AccountResponse
+import com.bangkit.healthtroops.ekipi.data.source.remote.response.InsertResponse
 import com.bangkit.healthtroops.ekipi.data.RemoteResponse
-import com.bangkit.healthtroops.ekipi.data.User
-import com.bangkit.healthtroops.ekipi.network.AuthService
+import com.bangkit.healthtroops.ekipi.data.source.remote.response.UserResponse
+import com.bangkit.healthtroops.ekipi.data.source.remote.network.AuthService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,10 +25,10 @@ class SignUpViewModel @Inject constructor(
 
     fun getResponse(): LiveData<RemoteResponse> = remoteResponse
 
-    fun register(user: User, account: Account) {
+    fun register(user: UserResponse, accountResponse: AccountResponse) {
         remoteResponse.postValue(RemoteResponse.loading())
 
-        val call = authService.registerAccount(account)
+        val call = authService.registerAccount(accountResponse)
         call.enqueue(object : Callback<InsertResponse> {
             override fun onResponse(
                 call: Call<InsertResponse>,
@@ -36,7 +36,7 @@ class SignUpViewModel @Inject constructor(
             ) {
                 if (response.isSuccessful) {
                     user.accountId = response.body()!!.response.insertId
-                    registerUser(user, account.email)
+                    registerUser(user, accountResponse.email)
                 } else {
                     remoteResponse.postValue(RemoteResponse.error("Failed register account"))
                 }
@@ -48,7 +48,7 @@ class SignUpViewModel @Inject constructor(
         })
     }
 
-    private fun registerUser(user: User, email: String) {
+    private fun registerUser(user: UserResponse, email: String) {
         val call = authService.registerUser(user)
 
         call.enqueue(object : Callback<InsertResponse> {

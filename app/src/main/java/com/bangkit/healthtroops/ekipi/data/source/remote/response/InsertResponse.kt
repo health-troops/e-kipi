@@ -1,7 +1,7 @@
-package com.bangkit.healthtroops.ekipi.data
+package com.bangkit.healthtroops.ekipi.data.source.remote.response
 
 data class InsertResponse(
-    val status: Int,
+    val status: Int?,
     val error: String?,
     val response: InsertResponseResult,
 )

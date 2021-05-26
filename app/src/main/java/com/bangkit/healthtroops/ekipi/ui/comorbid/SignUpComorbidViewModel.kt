@@ -5,12 +5,12 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.bangkit.healthtroops.ekipi.data.InsertResponse
-import com.bangkit.healthtroops.ekipi.data.QueryResponse
+import com.bangkit.healthtroops.ekipi.data.source.remote.response.InsertResponse
+import com.bangkit.healthtroops.ekipi.data.source.remote.response.QueryResponse
 import com.bangkit.healthtroops.ekipi.data.RemoteResponse
 import com.bangkit.healthtroops.ekipi.data.source.remote.response.ComorbidDataResponse
 import com.bangkit.healthtroops.ekipi.domain.model.ComorbidData
-import com.bangkit.healthtroops.ekipi.network.ProfileService
+import com.bangkit.healthtroops.ekipi.data.source.remote.network.ProfileService
 import com.bangkit.healthtroops.ekipi.ui.auth.AuthActivity
 import com.bangkit.healthtroops.ekipi.utils.DataMapper
 import dagger.hilt.android.lifecycle.HiltViewModel

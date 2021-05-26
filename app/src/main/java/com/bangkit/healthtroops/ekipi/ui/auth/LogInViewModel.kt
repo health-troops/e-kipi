@@ -6,10 +6,10 @@ import androidx.core.content.edit
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.bangkit.healthtroops.ekipi.data.Account
-import com.bangkit.healthtroops.ekipi.data.QueryResponse
+import com.bangkit.healthtroops.ekipi.data.source.remote.response.AccountResponse
+import com.bangkit.healthtroops.ekipi.data.source.remote.response.QueryResponse
 import com.bangkit.healthtroops.ekipi.data.RemoteResponse
-import com.bangkit.healthtroops.ekipi.network.AuthService
+import com.bangkit.healthtroops.ekipi.data.source.remote.network.AuthService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -30,13 +30,13 @@ class LogInViewModel @Inject constructor(
     fun logIn(email: String, password: String) {
         remoteResponse.postValue(RemoteResponse.loading())
         val call = authService.logIn(
-            Account(null, email, password)
+            AccountResponse(null, email, password)
         )
 
-        call.enqueue(object : Callback<QueryResponse<Account>> {
+        call.enqueue(object : Callback<QueryResponse<AccountResponse>> {
             override fun onResponse(
-                call: Call<QueryResponse<Account>>,
-                response: Response<QueryResponse<Account>>
+                call: Call<QueryResponse<AccountResponse>>,
+                response: Response<QueryResponse<AccountResponse>>
             ) {
                 if (response.isSuccessful) {
                     if (response.body()!!.response.size == 1) {
@@ -56,7 +56,7 @@ class LogInViewModel @Inject constructor(
                 }
             }
 
-            override fun onFailure(call: Call<QueryResponse<Account>>, t: Throwable) {
+            override fun onFailure(call: Call<QueryResponse<AccountResponse>>, t: Throwable) {
                 Log.d(TAG, t.message.toString())
                 remoteResponse.postValue(RemoteResponse.error("on Failure"))
             }

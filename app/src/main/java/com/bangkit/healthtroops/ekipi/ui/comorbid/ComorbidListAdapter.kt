@@ -4,7 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bangkit.healthtroops.ekipi.data.ComorbidSymptom
+import com.bangkit.healthtroops.ekipi.domain.model.ComorbidSymptom
 import com.bangkit.healthtroops.ekipi.databinding.ItemComorbidCheckboxBinding
 import com.bangkit.healthtroops.ekipi.domain.model.ComorbidData
 import okhttp3.internal.immutableListOf

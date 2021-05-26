@@ -1,7 +1,7 @@
-package com.bangkit.healthtroops.ekipi.network
+package com.bangkit.healthtroops.ekipi.data.source.remote.network
 
-import com.bangkit.healthtroops.ekipi.data.InsertResponse
-import com.bangkit.healthtroops.ekipi.data.QueryResponse
+import com.bangkit.healthtroops.ekipi.data.source.remote.response.InsertResponse
+import com.bangkit.healthtroops.ekipi.data.source.remote.response.QueryResponse
 import com.bangkit.healthtroops.ekipi.data.source.remote.response.ComorbidDataResponse
 import retrofit2.Call
 import retrofit2.http.*

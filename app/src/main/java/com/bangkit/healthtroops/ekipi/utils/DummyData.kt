@@ -2,7 +2,7 @@ package com.bangkit.healthtroops.ekipi.utils
 
 import android.content.Context
 import com.bangkit.healthtroops.ekipi.R
-import com.bangkit.healthtroops.ekipi.data.ComorbidSymptom
+import com.bangkit.healthtroops.ekipi.domain.model.ComorbidSymptom
 
 object DummyData {
     fun generateComorbidSymptoms(context: Context): List<ComorbidSymptom> {

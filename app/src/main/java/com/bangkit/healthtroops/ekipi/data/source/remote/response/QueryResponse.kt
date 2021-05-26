@@ -1,4 +1,4 @@
-package com.bangkit.healthtroops.ekipi.data
+package com.bangkit.healthtroops.ekipi.data.source.remote.response
 
 data class QueryResponse<T>(
     val status: Int,
