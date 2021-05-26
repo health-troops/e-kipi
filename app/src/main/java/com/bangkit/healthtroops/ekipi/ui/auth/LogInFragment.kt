@@ -56,6 +56,7 @@ class LogInFragment : Fragment() {
             viewModel.getResponse().observe(requireActivity()) { resource ->
                 when (resource) {
                     is Resource.Success -> {
+                        binding.progressBar.hide()
                         val email = resource.data?.email
                         val accountId = resource.data?.id
 
@@ -69,10 +70,11 @@ class LogInFragment : Fragment() {
                         }
                     }
                     is Resource.Error -> {
+                        binding.progressBar.hide()
                         Toast.makeText(requireContext(), resource.message, Toast.LENGTH_LONG).show()
                     }
-                    else -> {
-
+                    is Resource.Loading -> {
+                        binding.progressBar.show()
                     }
                 }
             }
