@@ -1,0 +1,25 @@
+package com.bangkit.healthtroops.ekipi.domain.model
+
+data class ComorbidData(
+    var idAccount: Int,
+    var hipertensi: Boolean,
+    var diabetesMelitus: Boolean,
+    var gagalJantung: Boolean,
+    var jantungKoroner: Boolean,
+    var paruObstruktifKronis: Boolean,
+    var asma: Boolean,
+    var hati: Boolean,
+    var tbc: Boolean,
+    var autoimun: Boolean,
+    var kanker: Boolean,
+    var hiv: Boolean,
+    var alergiObat: Boolean,
+    var kelainanDarah: Boolean,
+    var hipertiroid: Boolean,
+    var ginjal: Boolean,
+    var dermatitisAtopi: Boolean,
+    var reaksiAnafilaksis: Boolean,
+    var urtikaria: Boolean,
+    var alergiMakanan: Boolean,
+    var interstitialLung: Boolean,
+)

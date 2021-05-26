@@ -22,5 +22,4 @@ interface AuthService {
 
     @POST("api/register")
     fun registerAccount(@Body body: Account): Call<InsertResponse>
-
 }

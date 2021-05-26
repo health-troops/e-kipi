@@ -51,13 +51,14 @@ class HomeActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.menu_logout -> {
                 sharedPref.edit {
-                    putString(AuthActivity.AUTH_EMAIL, null)
-                    val intent = Intent(this@HomeActivity, AuthActivity::class.java).apply {
-                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                    }
-                    startActivity(intent)
+                    remove(AuthActivity.AUTH_EMAIL)
+                    remove(AuthActivity.AUTH_ID)
                 }
+                val intent = Intent(this@HomeActivity, AuthActivity::class.java).apply {
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                }
+                startActivity(intent)
 
             }
         }
