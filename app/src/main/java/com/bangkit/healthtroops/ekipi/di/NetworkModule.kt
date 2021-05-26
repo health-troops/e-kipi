@@ -1,6 +1,8 @@
 package com.bangkit.healthtroops.ekipi.di
 
 import com.bangkit.healthtroops.ekipi.BuildConfig.BASE_URL
+import com.bangkit.healthtroops.ekipi.network.AuthService
+import com.bangkit.healthtroops.ekipi.network.ProfileService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,5 +31,15 @@ class NetworkModule {
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
+    }
+
+    @Provides
+    fun provideAuthService(retrofit: Retrofit): AuthService {
+        return retrofit.create(AuthService::class.java)
+    }
+
+    @Provides
+    fun provideProfileService(retrofit: Retrofit): ProfileService {
+        return retrofit.create(ProfileService::class.java)
     }
 }

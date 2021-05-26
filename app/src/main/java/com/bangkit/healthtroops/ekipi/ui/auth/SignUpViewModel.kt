@@ -59,6 +59,7 @@ class SignUpViewModel @Inject constructor(
                 if (response.isSuccessful) {
                     sharedPref.edit {
                         putString(AuthActivity.AUTH_EMAIL, email)
+                        putInt(AuthActivity.AUTH_ID, user.accountId)
                     }
                     remoteResponse.postValue(RemoteResponse.success())
                 } else {

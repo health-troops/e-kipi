@@ -14,15 +14,16 @@
         android:theme="@style/Theme.EKIPI"
         android:usesCleartextTraffic="true">
         <!-- should disable usesCleartextTraffic in release -->
-        <activity android:name=".ui.profile.ProfileActivity" />
-        <activity android:name=".ui.home.HomeActivity" />
-        <activity android:name=".ui.auth.AuthActivity">
+        <activity android:name=".ui.splash.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.profile.ProfileActivity" />
+        <activity android:name=".ui.home.HomeActivity" />
+        <activity android:name=".ui.auth.AuthActivity" />
     </application>
 
 </manifest>

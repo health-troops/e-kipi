@@ -40,8 +40,11 @@ class LogInViewModel @Inject constructor(
             ) {
                 if (response.isSuccessful) {
                     if (response.body()!!.response.size == 1) {
+                        val accountId = response.body()!!.response[0].id!!
+
                         sharedPref.edit {
                             putString(AuthActivity.AUTH_EMAIL, email)
+                            putInt(AuthActivity.AUTH_ID, accountId)
                         }
                         remoteResponse.postValue(RemoteResponse.success())
                     } else {
