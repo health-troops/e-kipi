@@ -38,11 +38,16 @@
     <string name="my_profile">My Profile</string>
     <string name="comorbid_prompt">Adakah Penyakit bawaan yang anda idap selama ini?</string>
     <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
     <string name="health_check">Health Check</string>
     <string name="logout">Logout</string>
     <string name="daily_form">Daily Form</string>
     <string name="daily_checkup">Daily Checkup</string>
     <string name="skip">Lewati</string>
+    <string name="daily_form_question_1">Pilih gejala yang kamu alami hari ini</string>
+    <string name="daily_form_question_2">Deskripsikan apa yang kamu rasakan</string>
+    <string name="laki_laki">laki-laki</string>
+    <string name="perempuan">perempuan</string>
     <string-array name="comorbid_symptoms">
         <item>Hipertensi</item>
         <item>Diabetes melitus</item>

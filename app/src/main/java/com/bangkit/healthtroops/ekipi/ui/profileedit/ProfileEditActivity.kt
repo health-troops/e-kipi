@@ -1,6 +1,7 @@
 package com.bangkit.healthtroops.ekipi.ui.profileedit
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.RadioButton
 import androidx.activity.viewModels
@@ -97,10 +98,9 @@ class ProfileEditActivity : AppCompatActivity() {
                     edtMotherSName.setText(it.mothersName)
                     edtPhoneNumber.setText(it.noHp)
                     edtName.setText(it.name)
-                    rgGender.clearCheck()
                     rgGender.check(when (it.gender) {
-                        "laki-laki" -> 1
-                        "perempuan" -> 2
+                        getString(R.string.laki_laki) -> rgGender.getChildAt(0).id
+                        getString(R.string.perempuan) -> rgGender.getChildAt(1).id
                         else -> -1
                     })
                 }
@@ -115,8 +115,8 @@ class ProfileEditActivity : AppCompatActivity() {
 
             val genderView: RadioButton = view.findViewById(genderSelected)
             return when (genderView.text.toString()) {
-                getString(R.string.male) -> "laki-laki"
-                getString(R.string.female) -> "perempuan"
+                getString(R.string.male) -> getString(R.string.laki_laki)
+                getString(R.string.female) -> getString(R.string.perempuan)
                 else -> null
             }
         }
@@ -174,5 +174,13 @@ class ProfileEditActivity : AppCompatActivity() {
 
             return valid
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            finish()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
