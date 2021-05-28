@@ -20,9 +20,10 @@
         tools:context=".ui.auth.SignUpUserFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/c_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:padding="@dimen/margin">
 
             <TextView
                 android:id="@+id/tv_label_sign_up"
@@ -34,6 +35,24 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/lyt_name"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_sign_up"
+                android:visibility="gone">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/name"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
             <TextView
                 android:id="@+id/tv_label_gender"
                 style="@style/TextAppearance.MaterialComponents.Body2"
@@ -42,7 +61,7 @@
                 android:layout_marginTop="16dp"
                 android:text="@string/gender"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_label_sign_up" />
+                app:layout_constraintTop_toBottomOf="@id/lyt_name" />
 
             <RadioGroup
                 android:id="@+id/rg_gender"

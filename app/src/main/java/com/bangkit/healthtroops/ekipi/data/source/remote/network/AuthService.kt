@@ -4,7 +4,6 @@ import com.bangkit.healthtroops.ekipi.data.source.remote.response.AccountRespons
 import com.bangkit.healthtroops.ekipi.data.source.remote.response.InsertResponse
 import com.bangkit.healthtroops.ekipi.data.source.remote.response.QueryResponse
 import com.bangkit.healthtroops.ekipi.data.source.remote.response.UserResponse
-import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
 

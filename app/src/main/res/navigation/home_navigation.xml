@@ -11,30 +11,37 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_navigation_home_to_profileActivity"
-            app:destination="@id/profileActivity" />
-        <action
             android:id="@+id/action_navigation_home_to_profileFragment"
             app:destination="@id/navigation_profile" />
+        <action
+            android:id="@+id/action_navigation_home_to_dailyFormActivity"
+            app:destination="@id/dailyFormActivity" />
     </fragment>
-    <activity
-        android:id="@+id/profileActivity"
-        android:name="com.bangkit.healthtroops.ekipi.ui.profile.ProfileActivity"
-        android:label="profile_activity"
-        tools:layout="@layout/profile_activity" />
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.bangkit.healthtroops.ekipi.ui.profile.ProfileFragment"
         android:label="profile_fragment"
         tools:layout="@layout/profile_fragment" >
         <action
+            android:id="@+id/action_navigation_profile_to_profileEditActivity"
+            app:destination="@id/profileEditActivity" />
+        <action 
             android:id="@+id/action_navigation_profile_to_signUpComorbidFragment2"
             app:destination="@id/signUpComorbidFragment2" />
     </fragment>
+    <activity
+        android:id="@+id/profileEditActivity"
+        android:name="com.bangkit.healthtroops.ekipi.ui.profileedit.ProfileEditActivity"
+        android:label="ProfileEditActivity" />
     <fragment
         android:id="@+id/signUpComorbidFragment2"
         android:name="com.bangkit.healthtroops.ekipi.ui.comorbid.SignUpComorbidFragment"
         android:label="fragment_sign_up_comorbid"
         tools:layout="@layout/fragment_sign_up_comorbid" />
+    <activity
+        android:id="@+id/dailyFormActivity"
+        android:name="com.bangkit.healthtroops.ekipi.ui.dailyform.DailyFormActivity"
+        android:label="daily_form_activity"
+        tools:layout="@layout/daily_form_activity" />
 
 </navigation>

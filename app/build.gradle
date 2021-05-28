@@ -19,7 +19,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "BASE_URL", "\"${System.env.EKIPI_BASE_URL}\"")
+//        buildConfigField("String", "BASE_URL", "\"${System.env.EKIPI_BASE_URL}\"")
+        buildConfigField("String", "BASE_URL", '"https://causal-tracker-312605.uc.r.appspot.com"')
     }
 
     buildTypes {

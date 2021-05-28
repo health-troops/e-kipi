@@ -1,7 +1,9 @@
 package com.bangkit.healthtroops.ekipi.utils
 
+import com.bangkit.healthtroops.ekipi.data.source.remote.response.ChecklistResponse
 import com.bangkit.healthtroops.ekipi.data.source.remote.response.ComorbidDataResponse
 import com.bangkit.healthtroops.ekipi.domain.model.ComorbidData
+import com.bangkit.healthtroops.ekipi.domain.model.FormChecklist
 
 object DataMapper {
     fun mapResponseToDomain(input: ComorbidDataResponse) = ComorbidData(
@@ -51,6 +53,14 @@ object DataMapper {
         alergiMakanan = input.alergiMakanan.toInt(),
         interstitialLung = input.interstitialLung.toInt()
     )
+
+    fun mapResponseToDomain(input: List<ChecklistResponse>) = input.map {
+        FormChecklist(
+            it.id,
+            it.nama,
+            it.penanganan
+        )
+    }
 
     private fun Int.toBoolean() = this == 1
     private fun Boolean.toInt() = if (this) 1 else 0

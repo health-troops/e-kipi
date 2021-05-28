@@ -13,7 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EKIPI"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ui.dailyform.DailyFormActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
         <!-- should disable usesCleartextTraffic in release -->
+        <activity android:name=".ui.profileedit.ProfileEditActivity" />
         <activity android:name=".ui.splash.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

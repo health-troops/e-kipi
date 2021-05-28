@@ -42,6 +42,9 @@ class ProfileFragment : Fragment() {
             adapter = riwayatAdapter
         }
 
+        binding.btnEditProfile.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_profile_to_profileEditActivity)
+        }
         binding.btnEditKomorbid.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_profile_to_signUpComorbidFragment2)
         }
