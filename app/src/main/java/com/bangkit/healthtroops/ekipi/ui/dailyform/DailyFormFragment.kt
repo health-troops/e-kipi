@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bangkit.healthtroops.ekipi.databinding.DailyFormFragmentBinding
 import com.bangkit.healthtroops.ekipi.ui.dailyform.viewmodel.DailyFormViewModel
@@ -13,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DailyFormFragment : Fragment() {
-    private val viewModel by viewModels<DailyFormViewModel>()
+    private val viewModel by activityViewModels<DailyFormViewModel>()
     private lateinit var binding: DailyFormFragmentBinding
 
     companion object {

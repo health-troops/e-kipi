@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.dailyform.Recommendation"
+    android:padding="32dp"
+    android:background="@color/orange_500">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rekomendasi"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_marginBottom="16dp"/>
+            <TextView
+                android:id="@+id/recommendation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                tools:text="Recomendasinya asdajbsanspod kdna sndkj asndas daskdasidh sk"
+                style="@style/TextAppearance.AppCompat.Body1"
+                />
+            <Button
+                android:id="@+id/btn_oke"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/oke"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="8dp"
+                />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

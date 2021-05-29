@@ -1,24 +1,39 @@
 package com.bangkit.healthtroops.ekipi.ui.dailyform.viewmodel
 
+import android.content.SharedPreferences
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.bangkit.healthtroops.ekipi.data.DailyForm
+import com.bangkit.healthtroops.ekipi.data.InsertResponse
+import com.bangkit.healthtroops.ekipi.data.MLRequest
 import com.bangkit.healthtroops.ekipi.data.QueryResponse
 import com.bangkit.healthtroops.ekipi.data.source.remote.response.ChecklistResponse
+import com.bangkit.healthtroops.ekipi.data.source.remote.response.MLResponse
 import com.bangkit.healthtroops.ekipi.domain.model.FormChecklist
 import com.bangkit.healthtroops.ekipi.network.FormService
+import com.bangkit.healthtroops.ekipi.network.MachineLearningSevice
+import com.bangkit.healthtroops.ekipi.ui.auth.AuthActivity
 import com.bangkit.healthtroops.ekipi.utils.DataMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
-class DailyFormViewModel @Inject constructor(private val formService: FormService) : ViewModel() {
+class DailyFormViewModel @Inject constructor(
+    private val formService: FormService,
+    private val machineLearningSevice: MachineLearningSevice,
+    private val sharedPreferences: SharedPreferences
+) : ViewModel() {
 
     val checklists = MutableLiveData<List<FormChecklist>>()
     val loading = MutableLiveData(false)
+    val success = MutableLiveData(false)
+    val recommendation = MutableLiveData<MLResponse>()
 
     fun getAllChecklist() {
         loading.postValue(true)
@@ -27,7 +42,7 @@ class DailyFormViewModel @Inject constructor(private val formService: FormServic
                 call: Call<QueryResponse<ChecklistResponse>>,
                 response: Response<QueryResponse<ChecklistResponse>>
             ) {
-                if(response.isSuccessful) {
+                if (response.isSuccessful) {
                     val resBody = response.body()
                     if (resBody != null) {
                         checklists.postValue(DataMapper.mapResponseToDomain(resBody.response))
@@ -49,5 +64,67 @@ class DailyFormViewModel @Inject constructor(private val formService: FormServic
     fun sendData(checks: List<Int>, description: String?) {
         Log.d("SEND", checks.toString())
         Log.d("SEND", description ?: "")
+        loading.postValue(true)
+        val idAccount = sharedPreferences.getInt(AuthActivity.AUTH_ID, 0)
+        val mlRequestBody = MLRequest(
+            symptoms = checks,
+            text = description ?: ""
+        )
+        machineLearningSevice.postMachineLearning(mlRequestBody).enqueue(object :
+            Callback<MLResponse> {
+            override fun onResponse(call: Call<MLResponse>, response: Response<MLResponse>) {
+                val resBody = response.body()
+                if (response.isSuccessful && resBody!=null) {
+                    recommendation.postValue(resBody)
+                    val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+                    val date = Date()
+                    postBackend(
+                        DailyForm(
+                            predictionClass0 = resBody.prediction[0],
+                            predictionClass1 = resBody.prediction[1],
+                            predictionClass2 = resBody.prediction[2],
+                            idAccount = idAccount,
+                            tanggal = dateFormat.format(date),
+                            lainnya = description ?: "",
+                            diagnosis = resBody.treatment[0].penanganan,
+                            recommendation = resBody.recommendation.rekomendasi,
+                            checklist = checks
+                        )
+                    )
+                } else {
+                    Log.d("ML", response.message())
+                    loading.postValue(false)
+                }
+            }
+
+            override fun onFailure(call: Call<MLResponse>, t: Throwable) {
+                Log.d("ML", t.message.toString())
+                loading.postValue(false)
+            }
+
+        })
     }
+
+    private fun postBackend(dailyForm: DailyForm) {
+        formService.postDailyForm(dailyForm).enqueue(object : Callback<InsertResponse> {
+            override fun onResponse(
+                call: Call<InsertResponse>,
+                response: Response<InsertResponse>
+            ) {
+                val resBody = response.body()
+                if (response.isSuccessful) {
+                    success.postValue(true)
+                } else {
+                    Log.d("Backend", resBody?.error ?: response.message())
+                }
+                loading.postValue(false)
+            }
+
+            override fun onFailure(call: Call<InsertResponse>, t: Throwable) {
+                Log.d("Backend", t.message.toString())
+                loading.postValue(false)
+            }
+        })
+    }
+
 }
