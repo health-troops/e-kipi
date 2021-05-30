@@ -9,6 +9,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.bangkit.healthtroops.ekipi.R
 import com.bangkit.healthtroops.ekipi.data.Resource
 import com.bangkit.healthtroops.ekipi.databinding.FragmentLogInBinding
@@ -50,8 +51,7 @@ class LogInFragment : Fragment() {
                 when (resource) {
                     is Resource.Success -> {
                         binding.progressBar.hide()
-                        view.findNavController()
-                            .navigate(R.id.action_logInFragment_to_homeActivity)
+                        findNavController().navigate(R.id.action_logInFragment_to_homeActivity)
                     }
                     is Resource.Error -> {
                         binding.progressBar.hide()
