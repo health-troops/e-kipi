@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.edit
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +16,7 @@ import com.bangkit.healthtroops.ekipi.R
 import com.bangkit.healthtroops.ekipi.databinding.FragmentSettingsBinding
 import com.bangkit.healthtroops.ekipi.domain.model.ItemSelect
 import com.bangkit.healthtroops.ekipi.ui.auth.AuthActivity
+import com.bangkit.healthtroops.ekipi.ui.profileedit.viewmodel.ProfileEditViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -24,6 +26,7 @@ class SettingsFragment : Fragment() {
     lateinit var sharedPref: SharedPreferences
 
     private var binding: FragmentSettingsBinding? = null
+    private val viewModel by activityViewModels<ProfileEditViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +40,10 @@ class SettingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding?.apply {
-            tvFullName.text = "Leonardo" // TODO get from backend
+            viewModel.getProfile(sharedPref.getInt(AuthActivity.AUTH_ID, 0))
+            viewModel.userProfile.observe(viewLifecycleOwner) {
+                tvFullName.text = it.name
+            }
 
             val items = listOf(
                 ItemSelect(

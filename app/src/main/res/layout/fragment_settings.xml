@@ -25,11 +25,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:text="@string/placeholder"
             app:layout_constraintBottom_toBottomOf="@id/profile_pic"
             app:layout_constraintLeft_toRightOf="@id/profile_pic"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/profile_pic"
-            tools:text="Nama Lengkap" />
+            app:layout_constraintTop_toTopOf="@id/profile_pic" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_item_select"
