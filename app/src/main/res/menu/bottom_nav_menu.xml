@@ -8,12 +8,12 @@
 
     <item
         android:id="@+id/dailyFormActivity"
-        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:icon="@drawable/ic_outline_checklist_24"
         android:title="@string/daily_form" />
 
     <item
         android:id="@+id/navigation_profile"
-        android:icon="@drawable/ic_account_circle_black_24dp"
-        android:title="@string/title_profile" />
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:title="@string/title_settings" />
 
 </menu>
