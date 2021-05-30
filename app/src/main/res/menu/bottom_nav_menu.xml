@@ -7,7 +7,7 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/dailyFormActivity"
+        android:id="@+id/navigation_daily_form_history"
         android:icon="@drawable/ic_outline_checklist_24"
         android:title="@string/daily_form" />
 

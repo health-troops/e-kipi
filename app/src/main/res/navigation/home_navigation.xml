@@ -3,29 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_navigation"
-    app:startDestination="@+id/navigation_home">
-
+    app:startDestination="@id/navigation_home">
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.bangkit.healthtroops.ekipi.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_navigation_home_to_profileFragment"
-            app:destination="@id/navigation_profile" />
-        <action
-            android:id="@+id/action_navigation_home_to_dailyFormActivity"
-            app:destination="@id/dailyFormActivity" />
-    </fragment>
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/navigation_daily_form_history"
+        android:name="com.bangkit.healthtroops.ekipi.ui.dailyform.DailyFormHistoryFragment"
+        android:label="@string/daily_form"
+        tools:layout="@layout/fragment_daily_form_history" />
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.bangkit.healthtroops.ekipi.ui.profile.ProfileFragment"
-        android:label="profile_fragment"
-        tools:layout="@layout/profile_fragment" >
+        android:label="@string/title_settings"
+        tools:layout="@layout/profile_fragment">
         <action
             android:id="@+id/action_navigation_profile_to_profileEditActivity"
             app:destination="@id/profileEditActivity" />
-        <action 
+        <action
             android:id="@+id/action_navigation_profile_to_signUpComorbidFragment2"
             app:destination="@id/signUpComorbidFragment2" />
     </fragment>
@@ -38,10 +35,4 @@
         android:name="com.bangkit.healthtroops.ekipi.ui.comorbid.SignUpComorbidFragment"
         android:label="fragment_sign_up_comorbid"
         tools:layout="@layout/fragment_sign_up_comorbid" />
-    <activity
-        android:id="@+id/dailyFormActivity"
-        android:name="com.bangkit.healthtroops.ekipi.ui.dailyform.DailyFormActivity"
-        android:label="daily_form_activity"
-        tools:layout="@layout/daily_form_activity" />
-
 </navigation>
