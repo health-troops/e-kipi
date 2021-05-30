@@ -1,4 +1,4 @@
-package com.bangkit.healthtroops.ekipi.ui.home
+package com.bangkit.healthtroops.ekipi.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

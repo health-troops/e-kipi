@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bangkit.healthtroops.ekipi.R
 import com.bangkit.healthtroops.ekipi.databinding.FragmentSettingsBinding
 import com.bangkit.healthtroops.ekipi.domain.model.ItemSelect
+import com.bangkit.healthtroops.ekipi.ui.adapter.ItemSelectAdapter
 import com.bangkit.healthtroops.ekipi.ui.auth.AuthActivity
 import com.bangkit.healthtroops.ekipi.ui.profileedit.viewmodel.ProfileEditViewModel
 import dagger.hilt.android.AndroidEntryPoint

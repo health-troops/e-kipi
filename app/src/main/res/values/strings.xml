@@ -56,6 +56,7 @@
     <string name="pengaturan">Pengaturan</string>
     <string name="card_icon">Card Icon</string>
     <string name="placeholder">......</string>
+    <string name="tambah_kipi">Tambah KIPI</string>
     <string-array name="comorbid_symptoms">
         <item>Hipertensi</item>
         <item>Diabetes melitus</item>
