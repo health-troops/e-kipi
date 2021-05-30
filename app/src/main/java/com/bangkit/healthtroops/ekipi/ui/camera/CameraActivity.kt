@@ -2,8 +2,8 @@ package com.bangkit.healthtroops.ekipi.ui.camera
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -11,11 +11,14 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.bangkit.healthtroops.ekipi.R
-import com.bangkit.healthtroops.ekipi.ml.MobilenetV110224Quant
+import com.bangkit.healthtroops.ekipi.ml.FaceModel
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
+import java.nio.ByteBuffer
+import java.nio.ByteOrder
 
 class CameraActivity : AppCompatActivity() {
     lateinit var select_image_button : Button
@@ -25,6 +28,7 @@ class CameraActivity : AppCompatActivity() {
     lateinit var bitmap: Bitmap
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_camera)
 
@@ -44,21 +48,26 @@ class CameraActivity : AppCompatActivity() {
         })
 
         make_prediction.setOnClickListener(View.OnClickListener {
-            var resized = Bitmap.createScaledBitmap(bitmap, 224, 224, true)
-            val model = MobilenetV110224Quant.newInstance(this)
+            var resized = Bitmap.createScaledBitmap(bitmap, 48, 48, true)
+            var byteBuffer = getByteBuffer(resized)
 
-            var tbuffer = TensorImage.fromBitmap(resized)
-            var byteBuffer = tbuffer.buffer
 
-// Creates inputs for reference.
-            val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 224, 224, 3), DataType.UINT8)
+            val model = FaceModel.newInstance(this)
+
+//            var tbuffer = TensorImage.fromBitmap(resized)
+//            var byteBuffer = tbuffer.buffer
+//// Creates inputs for reference.
+//// Creates inputs for reference.
+            val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1,48, 48, 3), DataType.FLOAT32)
             inputFeature0.loadBuffer(byteBuffer)
 
 // Runs model inference and gets result.
             val outputs = model.process(inputFeature0)
             val outputFeature0 = outputs.outputFeature0AsTensorBuffer
-
+            println("================================================================")
+            println(outputFeature0.floatArray)
             var max = getMax(outputFeature0.floatArray)
+            println(max)
 
             text_view.text = labels[max]
 
@@ -76,14 +85,16 @@ class CameraActivity : AppCompatActivity() {
 
         var uri : Uri ?= data?.data
         bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
+
     }
 
     fun getMax(arr:FloatArray) : Int{
         var ind = 0;
         var min = 0.0f;
 
-        for(i in 0..1000)
-        {
+        for(i in 0..6)
+        {   println("!!===================================!!")
+            println(arr[i])
             if(arr[i] > min)
             {
                 min = arr[i]
@@ -92,4 +103,18 @@ class CameraActivity : AppCompatActivity() {
         }
         return ind
     }
+
+    private fun getByteBuffer(bitmap: Bitmap): ByteBuffer {
+        val width = bitmap.width
+        val height = bitmap.height
+        val mImgData: ByteBuffer = ByteBuffer.allocateDirect(3*4 * width * height)
+//        mImgData.order(ByteOrder.nativeOrder())
+//        val pixels = IntArray(width * height)
+//        bitmap.getPixels(pixels, 0, width, 0, 0, width, height)
+//        for (pixel in pixels) {
+//            mImgData.putInt(Color.red(pixel) as Int)
+//        }
+        return mImgData
+    }
+
 }
