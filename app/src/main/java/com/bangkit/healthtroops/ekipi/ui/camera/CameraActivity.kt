@@ -21,11 +21,11 @@ import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
 class CameraActivity : AppCompatActivity() {
-    lateinit var select_image_button : Button
-    lateinit var make_prediction : Button
-    lateinit var img_view : ImageView
-    lateinit var text_view : TextView
-    lateinit var bitmap: Bitmap
+    private lateinit var select_image_button : Button
+    private lateinit var make_prediction : Button
+    private lateinit var img_view : ImageView
+    private lateinit var text_view : TextView
+    private lateinit var bitmap: Bitmap
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -49,7 +49,13 @@ class CameraActivity : AppCompatActivity() {
 
         make_prediction.setOnClickListener(View.OnClickListener {
             var resized = Bitmap.createScaledBitmap(bitmap, 48, 48, true)
-            var byteBuffer = getByteBuffer(resized)
+            //var byteBuffer = getByteBuffer(resized)
+            var byteBuffer = ByteBuffer.allocateDirect(3*4 * 48*48).order(ByteOrder.nativeOrder())
+            val pixels = IntArray(48*48)
+            bitmap.getPixels(pixels, 0, 48, 0, 0, 48,48)
+            for (pixel in pixels) {
+                byteBuffer.putInt(pixel as Int)
+            }
 
 
             val model = FaceModel.newInstance(this)
@@ -102,19 +108,6 @@ class CameraActivity : AppCompatActivity() {
             }
         }
         return ind
-    }
-
-    private fun getByteBuffer(bitmap: Bitmap): ByteBuffer {
-        val width = bitmap.width
-        val height = bitmap.height
-        val mImgData: ByteBuffer = ByteBuffer.allocateDirect(3*4 * width * height)
-//        mImgData.order(ByteOrder.nativeOrder())
-//        val pixels = IntArray(width * height)
-//        bitmap.getPixels(pixels, 0, width, 0, 0, width, height)
-//        for (pixel in pixels) {
-//            mImgData.putInt(Color.red(pixel) as Int)
-//        }
-        return mImgData
     }
 
 }
