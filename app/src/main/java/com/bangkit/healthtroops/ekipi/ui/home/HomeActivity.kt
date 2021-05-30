@@ -28,7 +28,6 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navBar = binding.navigationBar
         val navController = findNavController(R.id.home_nav_host_fragment)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -38,7 +37,7 @@ class HomeActivity : AppCompatActivity() {
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
-        navBar.setupWithNavController(navController)
+        binding.navigationBar.setupWithNavController(navController)
 
     }
 
