@@ -2,7 +2,9 @@ package com.bangkit.healthtroops.ekipi.data.source.remote
 
 import com.bangkit.healthtroops.ekipi.data.source.remote.network.ApiResponse
 import com.bangkit.healthtroops.ekipi.data.source.remote.network.AuthService
+import com.bangkit.healthtroops.ekipi.data.source.remote.network.FormService
 import com.bangkit.healthtroops.ekipi.data.source.remote.response.AccountResponse
+import com.bangkit.healthtroops.ekipi.data.source.remote.response.FormKipiDailyResponse
 import com.bangkit.healthtroops.ekipi.data.source.remote.response.UserResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -14,6 +16,7 @@ import javax.inject.Singleton
 @Singleton
 class RemoteDataSource @Inject constructor(
     private val authService: AuthService,
+    private val formService: FormService,
 ) {
     suspend fun logIn(accountResponse: AccountResponse): Flow<ApiResponse<AccountResponse>> {
         return flow {
@@ -50,6 +53,21 @@ class RemoteDataSource @Inject constructor(
                     }
                 } else {
                     emit(ApiResponse.Error(registerAccount.error.sqlMessage))
+                }
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun getFormKipiDaily(accountId: Int): Flow<ApiResponse<List<FormKipiDailyResponse>>> {
+        return flow {
+            try {
+                val response = formService.getFormKipiDaily(accountId)
+                if (response.error == null) {
+                    emit(ApiResponse.Success(response.data))
+                } else {
+                    emit(ApiResponse.Error(response.error))
                 }
             } catch (e: Exception) {
                 emit(ApiResponse.Error(e.toString()))

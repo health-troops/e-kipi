@@ -6,8 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.healthtroops.ekipi.databinding.ItemSelectBinding
 import com.bangkit.healthtroops.ekipi.domain.model.ItemSelect
 
-class ItemSelectAdapter(private val items: List<ItemSelect>) :
+class ItemSelectAdapter() :
     RecyclerView.Adapter<ItemSelectAdapter.ListViewHolder>() {
+
+    private val items = mutableListOf<ItemSelect>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val binding =
@@ -15,12 +17,19 @@ class ItemSelectAdapter(private val items: List<ItemSelect>) :
         return ListViewHolder(binding)
     }
 
+
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         holder.bind(items[position])
     }
 
     override fun getItemCount(): Int {
         return items.size
+    }
+
+    fun setData(data: List<ItemSelect>) {
+        items.clear()
+        items.addAll(data)
+        notifyDataSetChanged()
     }
 
     inner class ListViewHolder(private val binding: ItemSelectBinding) :

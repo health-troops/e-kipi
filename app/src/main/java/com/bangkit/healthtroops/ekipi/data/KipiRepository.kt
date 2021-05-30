@@ -5,6 +5,7 @@ import androidx.core.content.edit
 import com.bangkit.healthtroops.ekipi.data.source.remote.RemoteDataSource
 import com.bangkit.healthtroops.ekipi.data.source.remote.network.ApiResponse
 import com.bangkit.healthtroops.ekipi.data.source.remote.response.AccountResponse
+import com.bangkit.healthtroops.ekipi.data.source.remote.response.FormKipiDailyResponse
 import com.bangkit.healthtroops.ekipi.data.source.remote.response.UserResponse
 import com.bangkit.healthtroops.ekipi.ui.auth.AuthActivity
 import kotlinx.coroutines.flow.first
@@ -63,6 +64,24 @@ class KipiRepository @Inject constructor(
                 }
                 is ApiResponse.Error -> {
                     emit(Resource.Error(result.errorMessage))
+                }
+            }
+        }
+
+    fun getFormKipiDaily() =
+        flow<Resource<List<FormKipiDailyResponse>>> {
+            val accountId = sharedPref.getInt(AuthActivity.AUTH_ID, 0)
+            emit(Resource.Loading())
+
+            when (val result = remoteDataSource.getFormKipiDaily(accountId).first()) {
+                is ApiResponse.Success -> {
+                    emit(Resource.Success(result.data))
+                }
+                is ApiResponse.Error -> {
+                    emit(Resource.Error(result.errorMessage))
+                }
+                else -> {
+                    emit(Resource.Error("something went wrong"))
                 }
             }
         }

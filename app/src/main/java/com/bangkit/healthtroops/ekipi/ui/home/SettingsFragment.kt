@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.edit
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -60,7 +61,7 @@ class SettingsFragment : Fragment() {
                 ItemSelect(
                     getString(R.string.sign_out),
                     getString(R.string.sign_out_desc),
-                    resources.getColor(R.color.orange_500)
+                    ResourcesCompat.getColor(resources, R.color.orange_500, null)
                 ) {
                     sharedPref.edit {
                         remove(AuthActivity.AUTH_EMAIL)
@@ -73,9 +74,12 @@ class SettingsFragment : Fragment() {
                     startActivity(intent)
                 },
             )
+
+            val itemSelectAdapter = ItemSelectAdapter()
+            itemSelectAdapter.setData(items)
             rvItemSelect.apply {
                 layoutManager = LinearLayoutManager(context)
-                adapter = ItemSelectAdapter(items)
+                adapter = itemSelectAdapter
                 addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             }
         }
