@@ -51,7 +51,9 @@ class SettingsFragment : Fragment() {
                     findNavController().navigate(R.id.action_settingsFragment_to_signUpComorbidFragment2)
                 },
                 ItemSelect(
-                    getString(R.string.sign_out), getString(R.string.sign_out_desc)
+                    getString(R.string.sign_out),
+                    getString(R.string.sign_out_desc),
+                    resources.getColor(R.color.orange_500)
                 ) {
                     sharedPref.edit {
                         remove(AuthActivity.AUTH_EMAIL)

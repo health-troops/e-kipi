@@ -28,6 +28,7 @@ class ItemSelectAdapter(private val items: List<ItemSelect>) :
         fun bind(item: ItemSelect) {
             binding.apply {
                 tvItemName.text = item.name
+                item.color?.let { tvItemName.setTextColor(it) }
                 tvItemDescription.text = item.description
                 root.setOnClickListener(item.onClickListener)
             }
