@@ -34,6 +34,7 @@ class DailyFormViewModel @Inject constructor(
     val loading = MutableLiveData(false)
     val success = MutableLiveData(false)
     val recommendation = MutableLiveData<MLResponse>()
+    val error = MutableLiveData<String>()
 
     fun getAllChecklist() {
         loading.postValue(true)
@@ -49,12 +50,14 @@ class DailyFormViewModel @Inject constructor(
                     }
                 } else {
                     Log.d("Checklists", response.message())
+                    error.postValue("Failed get Checklist")
                 }
                 loading.postValue(false)
             }
 
             override fun onFailure(call: Call<QueryResponse<ChecklistResponse>>, t: Throwable) {
                 Log.d("Checcklits", t.message.toString())
+                error.postValue("Failed get Checklist")
                 loading.postValue(false)
             }
 
@@ -93,12 +96,14 @@ class DailyFormViewModel @Inject constructor(
                     )
                 } else {
                     Log.d("ML", response.message())
+                    error.postValue("Prediction Error")
                     loading.postValue(false)
                 }
             }
 
             override fun onFailure(call: Call<MLResponse>, t: Throwable) {
                 Log.d("ML", t.message.toString())
+                error.postValue("Prediction Error")
                 loading.postValue(false)
             }
 
@@ -116,12 +121,14 @@ class DailyFormViewModel @Inject constructor(
                     success.postValue(true)
                 } else {
                     Log.d("Backend", resBody?.error ?: response.message())
+                    error.postValue("Failed to send data")
                 }
                 loading.postValue(false)
             }
 
             override fun onFailure(call: Call<InsertResponse>, t: Throwable) {
                 Log.d("Backend", t.message.toString())
+                error.postValue("Failed to send data")
                 loading.postValue(false)
             }
         })

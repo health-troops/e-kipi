@@ -8,7 +8,7 @@
     android:padding="32dp"
     android:background="@color/orange_500">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.circularreveal.cardview.CircularRevealCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -41,10 +41,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/oke"
+                android:background="@color/orange_500"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="8dp"
                 />
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

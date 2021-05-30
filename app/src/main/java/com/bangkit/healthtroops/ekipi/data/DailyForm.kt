@@ -3,6 +3,7 @@ package com.bangkit.healthtroops.ekipi.data
 import com.google.gson.annotations.SerializedName
 
 data class DailyForm(
+	@SerializedName("id_account")
 	val idAccount: Int,
 	val diagnosis: String,
 	val checklist: List<Int>,
