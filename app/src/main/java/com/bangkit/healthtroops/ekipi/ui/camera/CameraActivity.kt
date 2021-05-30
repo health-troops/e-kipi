@@ -1,5 +1,6 @@
 package com.bangkit.healthtroops.ekipi.ui.camera
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
@@ -23,9 +24,11 @@ import java.nio.ByteOrder
 class CameraActivity : AppCompatActivity() {
     private lateinit var select_image_button : Button
     private lateinit var make_prediction : Button
+    private lateinit var capture : Button
     private lateinit var img_view : ImageView
     private lateinit var text_view : TextView
     private lateinit var bitmap: Bitmap
+    val REQUEST_CODE = 2000
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -34,6 +37,7 @@ class CameraActivity : AppCompatActivity() {
 
         select_image_button = findViewById(R.id.button)
         make_prediction = findViewById(R.id.button2)
+        capture = findViewById(R.id.button3)
         img_view = findViewById(R.id.imageView)
         text_view = findViewById(R.id.textView)
 
@@ -46,6 +50,10 @@ class CameraActivity : AppCompatActivity() {
 
             startActivityForResult(intent, 100)
         })
+        capture.setOnClickListener {
+            val camera_intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(camera_intent, REQUEST_CODE)
+        }
 
         make_prediction.setOnClickListener(View.OnClickListener {
             var resized = Bitmap.createScaledBitmap(bitmap, 48, 48, true)
@@ -86,11 +94,16 @@ class CameraActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode== Activity.RESULT_OK && requestCode==REQUEST_CODE && data!=null){
+            bitmap = data.extras?.get("data") as Bitmap
+            img_view.setImageBitmap(bitmap)
+        }
+        else{
+            img_view.setImageURI(data?.data)
+            var uri : Uri ?= data?.data
+            bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
+        }
 
-        img_view.setImageURI(data?.data)
-
-        var uri : Uri ?= data?.data
-        bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
 
     }
 
