@@ -1,8 +1,8 @@
 package com.bangkit.healthtroops.ekipi.di
 
 import com.bangkit.healthtroops.ekipi.BuildConfig.BASE_URL
-import com.bangkit.healthtroops.ekipi.network.AuthService
-import com.bangkit.healthtroops.ekipi.network.ProfileService
+import com.bangkit.healthtroops.ekipi.data.source.remote.network.AuthService
+import com.bangkit.healthtroops.ekipi.data.source.remote.network.ProfileService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,5 +1,6 @@
 package com.bangkit.healthtroops.ekipi.ui.home
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,23 +14,32 @@ class HomeFragment : Fragment() {
         fun newInstance() = HomeFragment()
     }
 
-    private lateinit var binding: FragmentHomeBinding
+    private var binding: FragmentHomeBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         binding = FragmentHomeBinding.inflate(layoutInflater)
-        return binding.root
+        return binding?.root
     }
 
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//
-////        binding?.let { binding ->
-////            binding.btnSignUp.setOnClickListener {
-////                view.findNavController().navigate(R.id.action_logInFragment_to_signUpLoginFragment)
-////            }
-////        }
-//    }
+    @SuppressLint("SetJavaScriptEnabled")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding?.apply {
+            wbvConditionTypes.settings.apply {
+                javaScriptEnabled = true
+                domStorageEnabled = true
+            }
+            wbvConditionTypes.loadUrl("http://130.211.223.0:3001/public/question/016e6dfe-2fd8-47bc-a124-cfa08d113e60")
+
+            wbvTopSymptoms.settings.apply {
+                javaScriptEnabled = true
+                domStorageEnabled = true
+            }
+            wbvTopSymptoms.loadUrl("http://130.211.223.0:3001/public/question/c699c74e-de90-4ac3-95af-92dc5d7e6800")
+        }
+    }
 }

@@ -34,7 +34,7 @@ class ProfileFragment : Fragment() {
 
         viewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
 
-        binding.tvName.text = "Leonardo"
+//        binding.tvName.text = "Leonardo"
         val riwayatAdapter = RiwayatListAdapter()
         binding.rvRiwayat.apply {
             setHasFixedSize(true)
@@ -42,9 +42,6 @@ class ProfileFragment : Fragment() {
             adapter = riwayatAdapter
         }
 
-        binding.btnEditKomorbid.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_profile_to_signUpComorbidFragment2)
-        }
     }
 
 }

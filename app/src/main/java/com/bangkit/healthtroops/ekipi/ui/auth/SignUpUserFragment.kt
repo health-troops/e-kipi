@@ -11,9 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.bangkit.healthtroops.ekipi.R
-import com.bangkit.healthtroops.ekipi.data.Account
-import com.bangkit.healthtroops.ekipi.data.RemoteResponse
-import com.bangkit.healthtroops.ekipi.data.User
+import com.bangkit.healthtroops.ekipi.data.Resource
+import com.bangkit.healthtroops.ekipi.data.source.remote.response.AccountResponse
+import com.bangkit.healthtroops.ekipi.data.source.remote.response.UserResponse
 import com.bangkit.healthtroops.ekipi.databinding.FragmentSignUpUserBinding
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,11 +23,6 @@ import java.util.*
 
 @AndroidEntryPoint
 class SignUpUserFragment : Fragment() {
-    companion object {
-        const val EXTRA_NAME = "extra_name"
-        const val EXTRA_EMAIL = "extra_email"
-        const val EXTRA_PASSWORD = "extra_password"
-    }
 
     private var binding: FragmentSignUpUserBinding? = null
     private val viewModel by viewModels<SignUpViewModel>()
@@ -56,13 +51,13 @@ class SignUpUserFragment : Fragment() {
 
             binding.btnSignUp.setOnClickListener {
                 if (isValid(view)) {
-                    val account = Account(
+                    val account = AccountResponse(
                         id = null,
                         email = arguments?.getString(EXTRA_EMAIL)!!,
                         password = arguments?.getString(EXTRA_PASSWORD)!!,
                     )
 
-                    val user = User(
+                    val user = UserResponse(
                         accountId = 0,
                         name = arguments?.getString(EXTRA_NAME)!!,
                         gender = getGender(view)!!,
@@ -79,18 +74,26 @@ class SignUpUserFragment : Fragment() {
                     )
 
                     viewModel.register(user, account)
+                } else {
+                    Toast.makeText(requireContext(), "Form is invalid", Toast.LENGTH_SHORT).show()
                 }
             }
 
-            viewModel.getResponse().observe(viewLifecycleOwner) {
-                when (it.status) {
-                    RemoteResponse.Status.SUCCESS ->
+            viewModel.getResponse().observe(requireActivity()) {
+                when (it) {
+                    is Resource.Success -> {
+                        binding.progressBar.hide()
                         view.findNavController()
                             .navigate(R.id.action_signUpUserFragment_to_signUpComorbidFragment)
-                    RemoteResponse.Status.ERROR ->
-                        Toast.makeText(context, it.errorMessage, Toast.LENGTH_LONG).show()
-                    RemoteResponse.Status.LOADING -> {
-                        Toast.makeText(context, "Loading", Toast.LENGTH_SHORT).show()
+                    }
+                    is Resource.Error -> {
+                        binding.progressBar.hide()
+                        if (it.isNotShowed())
+                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                        it.setShowed()
+                    }
+                    is Resource.Loading -> {
+                        binding.progressBar.show()
                     }
                 }
             }
@@ -170,5 +173,11 @@ class SignUpUserFragment : Fragment() {
             return valid
         }
         return false
+    }
+
+    companion object {
+        const val EXTRA_NAME = "extra_name"
+        const val EXTRA_EMAIL = "extra_email"
+        const val EXTRA_PASSWORD = "extra_password"
     }
 }

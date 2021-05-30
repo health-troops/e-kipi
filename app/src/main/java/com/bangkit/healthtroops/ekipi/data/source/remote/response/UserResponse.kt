@@ -1,15 +1,17 @@
-package com.bangkit.healthtroops.ekipi.data
+package com.bangkit.healthtroops.ekipi.data.source.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-data class User(
+data class UserResponse(
     @SerializedName("id_account")
     var accountId: Int,
     @SerializedName("nama")
     val name: String,
+    @SerializedName("gender")
     val gender: String,
-    @SerializedName("tanggal_lahir")
+    @SerializedName("tempat_lahir")
     val placeOfBirth: String,
+    @SerializedName("tanggal_lahir")
     val ttl: String,
     @SerializedName("no_hp")
     val noHp: String,

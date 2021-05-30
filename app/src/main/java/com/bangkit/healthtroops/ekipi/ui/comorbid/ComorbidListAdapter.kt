@@ -1,12 +1,11 @@
 package com.bangkit.healthtroops.ekipi.ui.comorbid
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bangkit.healthtroops.ekipi.data.ComorbidSymptom
 import com.bangkit.healthtroops.ekipi.databinding.ItemComorbidCheckboxBinding
 import com.bangkit.healthtroops.ekipi.domain.model.ComorbidData
+import com.bangkit.healthtroops.ekipi.domain.model.ComorbidSymptom
 import okhttp3.internal.immutableListOf
 
 class ComorbidListAdapter : RecyclerView.Adapter<ComorbidListAdapter.ListViewHolder>() {
@@ -39,7 +38,6 @@ class ComorbidListAdapter : RecyclerView.Adapter<ComorbidListAdapter.ListViewHol
     }
 
     fun setValues(data: ComorbidData) {
-        Log.d(TAG, "setValues: $data")
         values.clear()
         values.addAll(
             immutableListOf(
@@ -74,15 +72,11 @@ class ComorbidListAdapter : RecyclerView.Adapter<ComorbidListAdapter.ListViewHol
             val symptom = symptoms[position]
             val value = values[position]
 
-            binding.chkComorbid.text = symptom.name
-            binding.chkComorbid.isChecked = value
-            binding.chkComorbid.setOnCheckedChangeListener { _, b ->
-                values[position] = b
+            binding.root.text = symptom.name
+            binding.root.isChecked = value
+            binding.root.setOnClickListener {
+                values[position] = binding.root.isChecked
             }
         }
-    }
-
-    companion object {
-        private const val TAG = "ComorbidListAdapter"
     }
 }
