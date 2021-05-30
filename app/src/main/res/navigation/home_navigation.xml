@@ -11,21 +11,9 @@
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/navigation_daily_form_history"
-        android:name="com.bangkit.healthtroops.ekipi.ui.dailyform.DailyFormHistoryFragment"
+        android:name="com.bangkit.healthtroops.ekipi.ui.home.DailyFormHistoryFragment"
         android:label="@string/daily_form"
         tools:layout="@layout/fragment_daily_form_history" />
-    <fragment
-        android:id="@+id/navigation_profile"
-        android:name="com.bangkit.healthtroops.ekipi.ui.profile.ProfileFragment"
-        android:label="@string/title_settings"
-        tools:layout="@layout/profile_fragment">
-        <action
-            android:id="@+id/action_navigation_profile_to_profileEditActivity"
-            app:destination="@id/profileEditActivity" />
-        <action
-            android:id="@+id/action_navigation_profile_to_signUpComorbidFragment2"
-            app:destination="@id/signUpComorbidFragment2" />
-    </fragment>
     <activity
         android:id="@+id/profileEditActivity"
         android:name="com.bangkit.healthtroops.ekipi.ui.profileedit.ProfileEditActivity"
@@ -35,4 +23,16 @@
         android:name="com.bangkit.healthtroops.ekipi.ui.comorbid.SignUpComorbidFragment"
         android:label="fragment_sign_up_comorbid"
         tools:layout="@layout/fragment_sign_up_comorbid" />
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.bangkit.healthtroops.ekipi.ui.home.SettingsFragment"
+        android:label="@string/pengaturan"
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_settingsFragment_to_signUpComorbidFragment2"
+            app:destination="@id/signUpComorbidFragment2" />
+        <action
+            android:id="@+id/action_settingsFragment_to_profileEditActivity"
+            app:destination="@id/profileEditActivity" />
+    </fragment>
 </navigation>

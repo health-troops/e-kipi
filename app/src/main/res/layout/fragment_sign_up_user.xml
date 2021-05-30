@@ -27,7 +27,7 @@
 
             <TextView
                 android:id="@+id/tv_label_sign_up"
-                style="@style/Heading1"
+                style="@style/MyTheme.Heading1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/sign_up"

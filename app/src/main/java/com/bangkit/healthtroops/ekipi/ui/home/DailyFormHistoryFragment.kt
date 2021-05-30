@@ -1,4 +1,4 @@
-package com.bangkit.healthtroops.ekipi.ui.dailyform
+package com.bangkit.healthtroops.ekipi.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
