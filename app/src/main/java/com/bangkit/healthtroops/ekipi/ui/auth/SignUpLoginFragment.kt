@@ -14,10 +14,6 @@ import com.bangkit.healthtroops.ekipi.utils.Validator
 import com.google.android.material.textfield.TextInputLayout
 
 class SignUpLoginFragment : Fragment() {
-    companion object {
-        private const val TAG = "SignUpLoginFragment"
-    }
-
     private var binding: FragmentSignUpLoginBinding? = null
 
     override fun onCreateView(
@@ -114,14 +110,18 @@ class SignUpLoginFragment : Fragment() {
                 val password = binding.edtPassword.text.toString()
                 val confirmPassword = binding.edtConfirmPassword.text.toString()
                 val confirmPasswordLabel = getString(R.string.confirm_password)
-                if (confirmPassword.isEmpty()) {
-                    error = getString(R.string.error_empty, confirmPasswordLabel)
-                    valid = false
-                } else if (password != confirmPassword) {
-                    error = getString(R.string.error_confirm_password_wrong)
-                    valid = false
-                } else {
-                    error = null
+                when {
+                    confirmPassword.isEmpty() -> {
+                        error = getString(R.string.error_empty, confirmPasswordLabel)
+                        valid = false
+                    }
+                    password != confirmPassword -> {
+                        error = getString(R.string.error_confirm_password_wrong)
+                        valid = false
+                    }
+                    else -> {
+                        error = null
+                    }
                 }
             }
 

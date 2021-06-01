@@ -12,7 +12,7 @@ import com.bangkit.healthtroops.ekipi.data.source.remote.response.InsertResponse
 import com.bangkit.healthtroops.ekipi.data.source.remote.response.MLResponse
 import com.bangkit.healthtroops.ekipi.data.source.remote.response.QueryResponse
 import com.bangkit.healthtroops.ekipi.domain.model.FormChecklist
-import com.bangkit.healthtroops.ekipi.network.MachineLearningSevice
+import com.bangkit.healthtroops.ekipi.data.source.remote.network.MachineLearningSevice
 import com.bangkit.healthtroops.ekipi.ui.auth.AuthActivity
 import com.bangkit.healthtroops.ekipi.utils.DataMapper
 import dagger.hilt.android.lifecycle.HiltViewModel

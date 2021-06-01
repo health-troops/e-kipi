@@ -6,8 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.healthtroops.ekipi.databinding.ItemSelectBinding
 import com.bangkit.healthtroops.ekipi.domain.model.ItemSelect
 
-class ItemSelectAdapter() :
-    RecyclerView.Adapter<ItemSelectAdapter.ListViewHolder>() {
+class ItemSelectAdapter : RecyclerView.Adapter<ItemSelectAdapter.ListViewHolder>() {
 
     private val items = mutableListOf<ItemSelect>()
 

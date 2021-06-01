@@ -1,7 +1,7 @@
 package com.bangkit.healthtroops.ekipi.di
 
 import com.bangkit.healthtroops.ekipi.BuildConfig
-import com.bangkit.healthtroops.ekipi.network.MachineLearningSevice
+import com.bangkit.healthtroops.ekipi.data.source.remote.network.MachineLearningSevice
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -14,7 +14,7 @@ import com.bangkit.healthtroops.ekipi.ui.dailyform.viewmodel.DailyFormViewModel
  */
 class Recommendation : Fragment() {
     private val viewModel by activityViewModels<DailyFormViewModel>()
-    private lateinit var binding: FragmentRecommendationBinding
+    private var binding: FragmentRecommendationBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,7 +22,7 @@ class Recommendation : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentRecommendationBinding.inflate(inflater, container, false)
-        return binding.root
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -30,12 +30,16 @@ class Recommendation : Fragment() {
 
         viewModel.recommendation.observe(viewLifecycleOwner, {
             val rekomendasi = it.recommendation.rekomendasi
-            binding.recommendation.text = rekomendasi
+            binding?.recommendation?.text = rekomendasi
         })
 
-        binding.btnOke.setOnClickListener {
+        binding?.btnOke?.setOnClickListener {
             requireActivity().finish()
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
 }

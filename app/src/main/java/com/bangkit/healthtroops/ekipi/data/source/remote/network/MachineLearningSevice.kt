@@ -1,4 +1,4 @@
-package com.bangkit.healthtroops.ekipi.network
+package com.bangkit.healthtroops.ekipi.data.source.remote.network
 
 import com.bangkit.healthtroops.ekipi.data.MLRequest
 import com.bangkit.healthtroops.ekipi.data.source.remote.response.MLResponse
