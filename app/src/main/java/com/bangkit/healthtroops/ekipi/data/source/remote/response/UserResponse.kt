@@ -1,8 +1,8 @@
-package com.bangkit.healthtroops.ekipi.data
+package com.bangkit.healthtroops.ekipi.data.source.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-data class User(
+data class UserResponse(
     @SerializedName("id_account")
     var accountId: Int,
     @SerializedName("nama")

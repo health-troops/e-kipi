@@ -5,13 +5,13 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.bangkit.healthtroops.ekipi.data.DailyForm
-import com.bangkit.healthtroops.ekipi.data.InsertResponse
 import com.bangkit.healthtroops.ekipi.data.MLRequest
-import com.bangkit.healthtroops.ekipi.data.QueryResponse
+import com.bangkit.healthtroops.ekipi.data.source.remote.network.FormService
 import com.bangkit.healthtroops.ekipi.data.source.remote.response.ChecklistResponse
+import com.bangkit.healthtroops.ekipi.data.source.remote.response.InsertResponse
 import com.bangkit.healthtroops.ekipi.data.source.remote.response.MLResponse
+import com.bangkit.healthtroops.ekipi.data.source.remote.response.QueryResponse
 import com.bangkit.healthtroops.ekipi.domain.model.FormChecklist
-import com.bangkit.healthtroops.ekipi.network.FormService
 import com.bangkit.healthtroops.ekipi.network.MachineLearningSevice
 import com.bangkit.healthtroops.ekipi.ui.auth.AuthActivity
 import com.bangkit.healthtroops.ekipi.utils.DataMapper
@@ -46,7 +46,7 @@ class DailyFormViewModel @Inject constructor(
                 if (response.isSuccessful) {
                     val resBody = response.body()
                     if (resBody != null) {
-                        checklists.postValue(DataMapper.mapResponseToDomain(resBody.response))
+                        checklists.postValue(DataMapper.mapResponseToDomain(resBody.data))
                     }
                 } else {
                     Log.d("Checklists", response.message())
@@ -77,9 +77,9 @@ class DailyFormViewModel @Inject constructor(
             Callback<MLResponse> {
             override fun onResponse(call: Call<MLResponse>, response: Response<MLResponse>) {
                 val resBody = response.body()
-                if (response.isSuccessful && resBody!=null) {
+                if (response.isSuccessful && resBody != null) {
                     recommendation.postValue(resBody)
-                    val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+                    val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
                     val date = Date()
                     postBackend(
                         DailyForm(
@@ -120,7 +120,7 @@ class DailyFormViewModel @Inject constructor(
                 if (response.isSuccessful) {
                     success.postValue(true)
                 } else {
-                    Log.d("Backend", resBody?.error ?: response.message())
+                    Log.d("Backend", resBody?.error?.sqlMessage ?: response.message())
                     error.postValue("Failed to send data")
                 }
                 loading.postValue(false)

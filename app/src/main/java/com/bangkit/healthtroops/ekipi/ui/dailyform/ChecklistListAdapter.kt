@@ -20,8 +20,8 @@ class ChecklistListAdapter: RecyclerView.Adapter<ChecklistListAdapter.ListViewHo
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data: FormChecklist) {
-            binding.chkComorbid.text = data.nama
-            binding.chkComorbid.setOnCheckedChangeListener { _, b ->
+            binding.root.text = data.nama
+            binding.root.setOnCheckedChangeListener { _, b ->
                 if (b) checked.add(data.id)
                 else checked.remove(data.id)
             }

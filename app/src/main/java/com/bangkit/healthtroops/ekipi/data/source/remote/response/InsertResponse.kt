@@ -1,8 +1,8 @@
-package com.bangkit.healthtroops.ekipi.data
+package com.bangkit.healthtroops.ekipi.data.source.remote.response
 
 data class InsertResponse(
-    val status: Int,
-    val error: String?,
+    val status: Int?,
+    val error: InsertErrorResponse?,
     val response: InsertResponseResult,
 )
 
@@ -15,4 +15,9 @@ data class InsertResponseResult(
     val message: String,
     val protocol41: Boolean,
     val changedRows: Int,
+)
+
+data class InsertErrorResponse(
+    val code: String,
+    val sqlMessage: String,
 )

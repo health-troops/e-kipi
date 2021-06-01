@@ -8,7 +8,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import com.bangkit.healthtroops.ekipi.R
-import com.bangkit.healthtroops.ekipi.data.User
+import com.bangkit.healthtroops.ekipi.data.source.remote.response.UserResponse
 import com.bangkit.healthtroops.ekipi.databinding.FragmentSignUpUserBinding
 import com.bangkit.healthtroops.ekipi.ui.profileedit.viewmodel.ProfileEditViewModel
 import com.google.android.material.textfield.TextInputLayout
@@ -22,6 +22,7 @@ class ProfileEditActivity : AppCompatActivity() {
 
     private lateinit var binding: FragmentSignUpUserBinding
     private val viewModel by viewModels<ProfileEditViewModel>()
+
     // Change This later
     private val accountId = 2
 
@@ -51,13 +52,12 @@ class ProfileEditActivity : AppCompatActivity() {
 
             btnSignUp.setOnClickListener {
                 if (isValid(root)) {
-                    val user = User(
+                    val user = UserResponse(
                         accountId = accountId,
                         name = edtName.text.toString(),
                         gender = getGender(root)!!,
                         placeOfBirth = edtPlaceOfBirth.text.toString(),
-//                        Belom ni
-                        ttl = viewModel.userProfile.value?.placeOfBirth ?: "",
+                        ttl = getFormattedDate(),
                         noHp = edtPhoneNumber.text.toString(),
                         mothersName = edtMotherSName.text.toString(),
                         fathersName = edtFatherSName.text.toString(),
@@ -75,18 +75,10 @@ class ProfileEditActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        viewModel.loading.observe(this, {
-            binding.progressCircular.visibility = when (it) {
-                true -> View.VISIBLE
-                false -> View.GONE
-            }
-
-        })
         viewModel.getProfile(accountId)
         viewModel.userProfile.observe(this, {
             if (it != null) {
                 with(binding) {
-                    progressCircular.visibility = View.GONE
                     edtAddress.setText(it.address)
                     edtCity.setText(it.city)
                     edtDistrict.setText(it.district)
@@ -98,11 +90,13 @@ class ProfileEditActivity : AppCompatActivity() {
                     edtMotherSName.setText(it.mothersName)
                     edtPhoneNumber.setText(it.noHp)
                     edtName.setText(it.name)
-                    rgGender.check(when (it.gender) {
-                        getString(R.string.laki_laki) -> rgGender.getChildAt(0).id
-                        getString(R.string.perempuan) -> rgGender.getChildAt(1).id
-                        else -> -1
-                    })
+                    rgGender.check(
+                        when (it.gender) {
+                            getString(R.string.laki_laki) -> rgGender.getChildAt(0).id
+                            getString(R.string.perempuan) -> rgGender.getChildAt(1).id
+                            else -> -1
+                        }
+                    )
                 }
             }
         })
@@ -124,7 +118,7 @@ class ProfileEditActivity : AppCompatActivity() {
 
     private fun getFormattedDate(): String {
         val parser = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-        val date = parser.parse(binding!!.edtTtl.text.toString())!!
+        val date = parser.parse(binding.edtTtl.text.toString())!!
         val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         return formatter.format(date)
     }
