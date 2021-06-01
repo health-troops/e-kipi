@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import com.bangkit.healthtroops.ekipi.R
 import com.bangkit.healthtroops.ekipi.databinding.DailyFormFragmentBinding
 import com.bangkit.healthtroops.ekipi.ui.dailyform.viewmodel.DailyFormViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,6 +47,18 @@ class DailyFormFragment : Fragment() {
             val checks = listAdapter.checked
             val desc = binding.edtDesc.text?.toString()
             viewModel.sendData(checks, desc)
+        }
+
+        binding.btnMoodPredict.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.container, CameraFragment())
+                .commitNow()
+        }
+
+        viewModel.moodPrediction.observe(viewLifecycleOwner) {
+            if (it != null) {
+                binding.question1.text = "Mengapa anda merasa ${it} hari ini?"
+            }
         }
 
         viewModel.checklists.observe(viewLifecycleOwner) {

@@ -35,6 +35,7 @@ class DailyFormViewModel @Inject constructor(
     val success = MutableLiveData(false)
     val recommendation = MutableLiveData<MLResponse>()
     val error = MutableLiveData<String>()
+    val moodPrediction = MutableLiveData<String>()
 
     fun getAllChecklist() {
         loading.postValue(true)
