@@ -39,10 +39,6 @@ class DailyFormHistoryFragment : Fragment() {
                 findNavController().navigate(R.id.action_dailyFormHistory_to_dailyFormActivity)
             }
 
-            btnFaceMl.setOnClickListener {
-                startActivity(Intent(requireActivity(), CameraActivity::class.java))
-            }
-
             val itemSelectAdapter = ItemSelectAdapter()
             rvItemSelect.apply {
                 layoutManager = LinearLayoutManager(context)

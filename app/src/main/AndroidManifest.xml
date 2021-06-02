@@ -14,9 +14,7 @@
         android:theme="@style/Theme.EKIPI"
         android:usesCleartextTraffic="true">
         <!-- should disable usesCleartextTraffic in release -->
-        <activity
-            android:name=".ui.dailyform.DailyFormActivity"
-            android:theme="@style/Theme.EKIPI.NoActionBar" />
+        <activity android:name=".ui.dailyform.DailyFormActivity" />
         <activity android:name=".ui.camera.CameraActivity" />
         <activity android:name=".ui.profileedit.ProfileEditActivity" />
         <activity android:name=".ui.splash.SplashScreenActivity">

@@ -27,6 +27,17 @@ class DailyFormActivity : AppCompatActivity() {
                 .replace(R.id.container, DailyFormFragment.newInstance())
                 .commitNow()
         }
+
+        supportActionBar?.title = getString(R.string.tambah_kipi)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        if (supportFragmentManager.backStackEntryCount > 0) {
+            supportFragmentManager.popBackStack()
+        } else {
+            finish()
+        }
+        return super.onSupportNavigateUp()
+    }
 }
