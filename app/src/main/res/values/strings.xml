@@ -86,16 +86,13 @@
     <string name="description_info">Info</string>
     <string name="request_permission">This sample needs camera and storage permission.</string>
     <string name="camera_error">This device doesn\'t support Camera2 API.</string>
-    <string name="intro_message">
-        <![CDATA[
 
-
-            This sample demonstrates the basic use of Camera2 API. Check the source code to see how
-            you can display camera preview and take pictures.
-
-
-        ]]>
-    </string>
-    <string name="face_ml">Face ML</string>
+    <!-- camera prediction -->
     <string name="deteksi_wajah">Deteksi Wajah</string>
+    <string name="selected_image">Selected Image</string>
+    <string name="select">Select</string>
+    <string name="predict">Predict</string>
+    <string name="prediction_result">Prediction Result</string>
+    <string name="mood_predict_result">Hasil prediksi: %s</string>
+    <string name="question1">Mengapa anda merasa %s hari ini?</string>
 </resources>

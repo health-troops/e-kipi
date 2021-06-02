@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.camera.CameraActivity">
+    tools:context=".ui.dailyform.CameraFragment">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/img_selected"
         android:layout_width="208dp"
         android:layout_height="213dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -16,40 +16,41 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.097"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        android:contentDescription="@string/selected_image" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_select"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="62dp"
-        android:text="SELECT"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
+        android:text="@string/select"
+        app:layout_constraintEnd_toStartOf="@+id/btn_predict"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/img_selected" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_predict"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="62dp"
-        android:text="PREDICT"
+        android:text="@string/predict"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintStart_toEndOf="@+id/btn_select"
+        app:layout_constraintTop_toBottomOf="@+id/img_selected" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="176dp"
-        android:text="Prediction Result"
+        android:text="@string/prediction_result"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/img_selected" />
 </androidx.constraintlayout.widget.ConstraintLayout>

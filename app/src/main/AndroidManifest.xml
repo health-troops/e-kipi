@@ -15,7 +15,6 @@
         android:usesCleartextTraffic="true">
         <!-- should disable usesCleartextTraffic in release -->
         <activity android:name=".ui.dailyform.DailyFormActivity" />
-        <activity android:name=".ui.camera.CameraActivity" />
         <activity android:name=".ui.profileedit.ProfileEditActivity" />
         <activity android:name=".ui.splash.SplashScreenActivity">
             <intent-filter>
