@@ -16,4 +16,9 @@
         <item name="radioButtonStyle">@style/MyTheme.RadioButton</item>
         <item name="checkboxStyle">@style/MyTheme.CheckBox</item>
     </style>
+
+    <style name="Theme.EKIPI.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 </resources>
