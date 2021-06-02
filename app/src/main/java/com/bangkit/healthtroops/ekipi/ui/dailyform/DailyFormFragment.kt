@@ -39,10 +39,6 @@ class DailyFormFragment : Fragment() {
             adapter = listAdapter
         }
 
-        binding.cancelButton.setOnClickListener {
-            requireActivity().finish()
-        }
-
         binding.btnSave.setOnClickListener {
             val checks = listAdapter.checked
             val desc = binding.edtDesc.text?.toString()
@@ -52,7 +48,8 @@ class DailyFormFragment : Fragment() {
         binding.btnMoodPredict.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.container, CameraFragment())
-                .commitNow()
+                .addToBackStack(null)
+                .commit()
         }
 
         viewModel.moodPrediction.observe(viewLifecycleOwner) {
@@ -76,7 +73,9 @@ class DailyFormFragment : Fragment() {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         }
 
-        viewModel.getAllChecklist()
+        viewModel.moodPrediction.observe(viewLifecycleOwner) {
+            binding.tvMoodResult.visibility = View.VISIBLE
+            binding.tvMoodResult.text = it
+        }
     }
-
 }
