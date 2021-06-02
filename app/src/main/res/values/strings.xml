@@ -19,8 +19,6 @@
     <string name="district">District</string>
     <string name="sub_district">Sub-District</string>
     <string name="address">Address</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="next">Next</string>
 
@@ -30,10 +28,10 @@
     <string name="error_date">%1$s is not in date format %2$s</string>
 
     <string name="data_diri">Data Diri</string>
-    <string name="title_activity_test">TestActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_settings">Settings</string>
+    <string name="title_daily_form">Daily Form</string>
     <string name="my_profile">My Profile</string>
     <string name="my_profile_desc">Data Diri, Nomor Handphone, dan lain-lain</string>
     <string name="my_komorbid">My Komorbid</string>
@@ -42,18 +40,12 @@
     <string name="sign_out_desc">Keluar dari akun</string>
     <string name="comorbid_prompt">Adakah Penyakit bawaan yang anda idap selama ini?</string>
     <string name="save">Save</string>
-    <string name="cancel">Cancel</string>
-    <string name="health_check">Health Check</string>
-    <string name="logout">Logout</string>
-    <string name="daily_form">Daily Form</string>
-    <string name="daily_checkup">Daily Checkup</string>
     <string name="skip">Lewati</string>
     <string name="daily_form_question_1">Pilih gejala yang kamu alami hari ini</string>
     <string name="daily_form_question_2">Deskripsikan apa yang kamu rasakan</string>
     <string name="laki_laki">laki-laki</string>
     <string name="perempuan">perempuan</string>
     <string name="history">Riwayat</string>
-    <string name="pengaturan">Pengaturan</string>
     <string name="card_icon">Card Icon</string>
     <string name="placeholder">......</string>
     <string name="tambah_kipi">Tambah KIPI</string>
@@ -81,11 +73,6 @@
         <item>Alergi makanan</item>
         <item>Interstitial lung disease</item>
     </string-array>
-
-    <string name="picture">Picture</string>
-    <string name="description_info">Info</string>
-    <string name="request_permission">This sample needs camera and storage permission.</string>
-    <string name="camera_error">This device doesn\'t support Camera2 API.</string>
 
     <!-- camera prediction -->
     <string name="deteksi_wajah">Deteksi Wajah</string>
