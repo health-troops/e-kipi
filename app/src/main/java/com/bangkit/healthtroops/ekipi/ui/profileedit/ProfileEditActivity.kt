@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.widget.RadioButton
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import com.bangkit.healthtroops.ekipi.R
+import com.bangkit.healthtroops.ekipi.data.RemoteResponse
 import com.bangkit.healthtroops.ekipi.data.source.remote.response.UserResponse
 import com.bangkit.healthtroops.ekipi.databinding.FragmentSignUpUserBinding
 import com.bangkit.healthtroops.ekipi.ui.profileedit.viewmodel.ProfileEditViewModel
@@ -22,9 +24,6 @@ class ProfileEditActivity : AppCompatActivity() {
 
     private lateinit var binding: FragmentSignUpUserBinding
     private val viewModel by viewModels<ProfileEditViewModel>()
-
-    // Change This later
-    private val accountId = 2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +52,7 @@ class ProfileEditActivity : AppCompatActivity() {
             btnSignUp.setOnClickListener {
                 if (isValid(root)) {
                     val user = UserResponse(
-                        accountId = accountId,
+                        accountId = 0,
                         name = edtName.text.toString(),
                         gender = getGender(root)!!,
                         placeOfBirth = edtPlaceOfBirth.text.toString(),
@@ -67,7 +66,7 @@ class ProfileEditActivity : AppCompatActivity() {
                         subDistrict = edtSubDistrict.text.toString(),
                         address = edtAddress.text.toString(),
                     )
-                    viewModel.editProfile(accountId, user)
+                    viewModel.editProfile(user)
                 }
             }
 
@@ -75,7 +74,7 @@ class ProfileEditActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        viewModel.getProfile(accountId)
+        viewModel.getProfile()
         viewModel.userProfile.observe(this, {
             if (it != null) {
                 with(binding) {
@@ -83,6 +82,7 @@ class ProfileEditActivity : AppCompatActivity() {
                     edtCity.setText(it.city)
                     edtDistrict.setText(it.district)
                     edtPlaceOfBirth.setText(it.placeOfBirth)
+                    edtTtl.setText(convertDate(it.ttl))
                     edtSubDistrict.setText(it.subDistrict)
                     edtDistrict.setText(it.district)
                     edtProvince.setText(it.province)
@@ -100,6 +100,29 @@ class ProfileEditActivity : AppCompatActivity() {
                 }
             }
         })
+
+        viewModel.remoteResponse.observe(this) {
+            when (it.status) {
+                RemoteResponse.Status.SUCCESS -> {
+                    finish()
+                    Toast.makeText(this, "Edit profile success!", Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    Toast.makeText(this, it.errorMessage, Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+    }
+
+    private fun convertDate(dateStr: String): String {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+        val date = dateFormat.parse(dateStr)
+        return if (date != null) {
+            val parser = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+            parser.format(date)
+        } else {
+            ""
+        }
     }
 
     private fun getGender(view: View): String? {
