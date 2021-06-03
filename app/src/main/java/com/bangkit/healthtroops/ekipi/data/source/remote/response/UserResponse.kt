@@ -11,7 +11,6 @@ data class UserResponse(
     val gender: String,
     @SerializedName("tempat_lahir")
     val placeOfBirth: String,
-    @SerializedName("tanggal_lahir")
     val ttl: String,
     @SerializedName("no_hp")
     val noHp: String,

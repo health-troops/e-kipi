@@ -49,6 +49,7 @@ class RemoteDataSource @Inject constructor(
                     if (registerUser.error == null) {
                         emit(ApiResponse.Success(accountId))
                     } else {
+                        authService.deleteUserById(accountId)
                         emit(ApiResponse.Error(registerUser.error.sqlMessage))
                     }
                 } else {
