@@ -57,6 +57,8 @@
     <string name="card_icon">Card Icon</string>
     <string name="placeholder">......</string>
     <string name="tambah_kipi">Tambah KIPI</string>
+    <string name="rekomendasi">Rekomendasi</string>
+    <string name="oke">oke</string>
     <string-array name="comorbid_symptoms">
         <item>Hipertensi</item>
         <item>Diabetes melitus</item>
@@ -79,4 +81,21 @@
         <item>Alergi makanan</item>
         <item>Interstitial lung disease</item>
     </string-array>
+
+    <string name="picture">Picture</string>
+    <string name="description_info">Info</string>
+    <string name="request_permission">This sample needs camera and storage permission.</string>
+    <string name="camera_error">This device doesn\'t support Camera2 API.</string>
+    <string name="intro_message">
+        <![CDATA[
+
+
+            This sample demonstrates the basic use of Camera2 API. Check the source code to see how
+            you can display camera preview and take pictures.
+
+
+        ]]>
+    </string>
+    <string name="face_ml">Face ML</string>
+    <string name="deteksi_wajah">Deteksi Wajah</string>
 </resources>

@@ -2,6 +2,7 @@ package com.bangkit.healthtroops.ekipi.di
 
 import com.bangkit.healthtroops.ekipi.BuildConfig.BASE_URL
 import com.bangkit.healthtroops.ekipi.data.source.remote.network.AuthService
+import com.bangkit.healthtroops.ekipi.data.source.remote.network.FormService
 import com.bangkit.healthtroops.ekipi.data.source.remote.network.ProfileService
 import dagger.Module
 import dagger.Provides
@@ -41,5 +42,10 @@ class NetworkModule {
     @Provides
     fun provideProfileService(retrofit: Retrofit): ProfileService {
         return retrofit.create(ProfileService::class.java)
+    }
+
+    @Provides
+    fun provideFormService(retrofit: Retrofit): FormService {
+        return retrofit.create(FormService::class.java)
     }
 }

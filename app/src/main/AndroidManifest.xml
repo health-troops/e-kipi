@@ -17,6 +17,7 @@
         <activity
             android:name=".ui.dailyform.DailyFormActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity android:name=".ui.camera.CameraActivity" />
         <activity android:name=".ui.profileedit.ProfileEditActivity" />
         <activity android:name=".ui.splash.SplashScreenActivity">
             <intent-filter>

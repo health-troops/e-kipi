@@ -30,6 +30,14 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/btn_face_ml"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/face_ml"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/btn_add_kipi" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_item_select"
         android:layout_width="match_parent"

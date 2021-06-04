@@ -53,7 +53,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
+    <Button
+        android:id="@+id/btn_mood_predict"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/deteksi_wajah"
+        android:backgroundTint="@color/orange_500"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header_title" />
     <TextView
         android:id="@+id/question_1"
         style="@style/TextAppearance.AppCompat.Body2"
@@ -64,7 +74,7 @@
         android:text="@string/daily_form_question_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header_title" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_mood_predict" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_checks"
