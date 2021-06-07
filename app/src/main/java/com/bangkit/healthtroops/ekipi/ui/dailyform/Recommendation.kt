@@ -29,10 +29,10 @@ class Recommendation : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.recommendation.observe(viewLifecycleOwner, {
-            val rekomendasi = it.recommendation.rekomendasi
-            val maxIndex = if(it.treatment.size>2) 1 else if (it.treatment.size<=0) return 0 else it.treatment.size-1
-            for(i in 0..maxIndex) {
-                rekomendasi += "\n ${it.treatment[i].penanganan}"
+            var rekomendasi = it.recommendation.rekomendasi
+            val maxIndex = if (it.treatment.size > 2) 2 else it.treatment.size
+            for (i in 0 until maxIndex) {
+                rekomendasi += "\n\n ${it.treatment[i].penanganan}"
             }
             binding?.recommendation?.text = rekomendasi
         })
