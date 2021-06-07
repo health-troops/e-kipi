@@ -16,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class DailyFormFragment : Fragment() {
     private val viewModel by activityViewModels<DailyFormViewModel>()
-    private lateinit var binding: DailyFormFragmentBinding
+    private var binding: DailyFormFragmentBinding? = null
 
     companion object {
         fun newInstance() = DailyFormFragment()
@@ -25,58 +25,61 @@ class DailyFormFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         binding = DailyFormFragmentBinding.inflate(inflater, container, false)
-        return binding.root
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val listAdapter = ChecklistListAdapter()
-        binding.rvChecks.apply {
-            layoutManager = GridLayoutManager(requireContext(), 2)
-            adapter = listAdapter
-        }
+        binding?.apply {
+            val listAdapter = ChecklistListAdapter()
+            rvChecks.apply {
+                layoutManager = GridLayoutManager(requireContext(), 2)
+                adapter = listAdapter
+            }
 
-        binding.cancelButton.setOnClickListener {
-            requireActivity().finish()
-        }
+            btnSave.setOnClickListener {
+                val checks = listAdapter.checked
+                val desc = edtDesc.text?.toString()
+                viewModel.sendData(checks, desc)
+            }
 
-        binding.btnSave.setOnClickListener {
-            val checks = listAdapter.checked
-            val desc = binding.edtDesc.text?.toString()
-            viewModel.sendData(checks, desc)
-        }
+            btnMoodPredict.setOnClickListener {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.container, CameraFragment())
+                    .addToBackStack(null)
+                    .commit()
+            }
 
-        binding.btnMoodPredict.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.container, CameraFragment())
-                .commitNow()
-        }
+            viewModel.getAllChecklist()
 
-        viewModel.moodPrediction.observe(viewLifecycleOwner) {
-            if (it != null) {
-                binding.question1.text = "Mengapa anda merasa ${it} hari ini?"
+            viewModel.moodPrediction.observe(viewLifecycleOwner) {
+                tvMoodResult.visibility = View.VISIBLE
+                tvMoodResult.text = getString(R.string.mood_predict_result, it)
+                question1.text = getString(R.string.question1, it)
+            }
+
+            viewModel.checklists.observe(viewLifecycleOwner) {
+                listAdapter.setList(it)
+            }
+
+            viewModel.loading.observe(viewLifecycleOwner) {
+                progressCircular.visibility = when (it) {
+                    true -> View.VISIBLE
+                    false -> View.GONE
+                }
+            }
+
+            viewModel.error.observe(viewLifecycleOwner) {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
             }
         }
-
-        viewModel.checklists.observe(viewLifecycleOwner) {
-            listAdapter.setList(it)
-        }
-
-        viewModel.loading.observe(viewLifecycleOwner) {
-            binding.progressCircular.visibility = when (it) {
-                true -> View.VISIBLE
-                false -> View.GONE
-            }
-        }
-
-        viewModel.error.observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
-        }
-
-        viewModel.getAllChecklist()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
 }

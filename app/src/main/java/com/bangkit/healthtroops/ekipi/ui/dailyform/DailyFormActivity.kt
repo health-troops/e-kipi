@@ -1,8 +1,11 @@
 package com.bangkit.healthtroops.ekipi.ui.dailyform
 
 import android.os.Bundle
+import android.util.Log
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
 import com.bangkit.healthtroops.ekipi.R
 import com.bangkit.healthtroops.ekipi.ui.dailyform.viewmodel.DailyFormViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,14 +22,26 @@ class DailyFormActivity : AppCompatActivity() {
             if (it) {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.container, Recommendation())
-                    .commitNow()
+                    .commit()
             }
         })
+
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.container, DailyFormFragment.newInstance())
-                .commitNow()
+                .commit()
         }
+
+        supportActionBar?.title = getString(R.string.tambah_kipi)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        if (supportFragmentManager.backStackEntryCount > 0) {
+            supportFragmentManager.popBackStack()
+        } else {
+            finish()
+        }
+        return super.onSupportNavigateUp()
+    }
 }

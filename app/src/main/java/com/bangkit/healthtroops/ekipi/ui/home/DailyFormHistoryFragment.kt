@@ -1,6 +1,5 @@
 package com.bangkit.healthtroops.ekipi.ui.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +15,6 @@ import com.bangkit.healthtroops.ekipi.data.Resource
 import com.bangkit.healthtroops.ekipi.databinding.FragmentDailyFormHistoryBinding
 import com.bangkit.healthtroops.ekipi.domain.model.ItemSelect
 import com.bangkit.healthtroops.ekipi.ui.adapter.ItemSelectAdapter
-import com.bangkit.healthtroops.ekipi.ui.camera.CameraActivity
 
 class DailyFormHistoryFragment : Fragment() {
 
@@ -37,10 +35,6 @@ class DailyFormHistoryFragment : Fragment() {
         binding?.apply {
             btnAddKipi.setOnClickListener {
                 findNavController().navigate(R.id.action_dailyFormHistory_to_dailyFormActivity)
-            }
-
-            btnFaceMl.setOnClickListener {
-                startActivity(Intent(requireActivity(), CameraActivity::class.java))
             }
 
             val itemSelectAdapter = ItemSelectAdapter()

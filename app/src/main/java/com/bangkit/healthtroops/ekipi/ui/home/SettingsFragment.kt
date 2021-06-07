@@ -42,7 +42,7 @@ class SettingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding?.apply {
-            viewModel.getProfile(sharedPref.getInt(AuthActivity.AUTH_ID, 0))
+            viewModel.getProfile()
             viewModel.userProfile.observe(viewLifecycleOwner) {
                 tvFullName.text = it.name
             }
