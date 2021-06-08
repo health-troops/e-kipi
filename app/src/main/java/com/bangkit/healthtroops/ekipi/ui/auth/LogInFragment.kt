@@ -1,5 +1,6 @@
 package com.bangkit.healthtroops.ekipi.ui.auth
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,10 +10,10 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.bangkit.healthtroops.ekipi.R
 import com.bangkit.healthtroops.ekipi.data.Resource
 import com.bangkit.healthtroops.ekipi.databinding.FragmentLogInBinding
+import com.bangkit.healthtroops.ekipi.ui.home.HomeActivity
 import com.bangkit.healthtroops.ekipi.utils.Validator
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -51,7 +52,7 @@ class LogInFragment : Fragment() {
                 when (resource) {
                     is Resource.Success -> {
                         binding.progressBar.hide()
-                        findNavController().navigate(R.id.action_logInFragment_to_homeActivity)
+                        navigateToHome()
                     }
                     is Resource.Error -> {
                         binding.progressBar.hide()
@@ -107,5 +108,13 @@ class LogInFragment : Fragment() {
             return valid
         }
         return false
+    }
+
+    private fun navigateToHome() {
+        val intent = Intent(requireActivity(), HomeActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        }
+        startActivity(intent)
     }
 }
