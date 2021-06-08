@@ -54,7 +54,9 @@ class DailyFormHistoryFragment : Fragment() {
                             ItemSelect(
                                 name = "Hari ke-${counter++}",
                                 description = formKipiDaily.lainnya
-                            ) {}
+                            ) {
+                                findNavController().navigate(R.id.action_to_dailyFormDetailActivity)
+                            }
                         }?.let { itemSelect -> itemSelectAdapter.setData(itemSelect) }
                     }
                     is Resource.Loading -> {
