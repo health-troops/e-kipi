@@ -20,6 +20,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "BASE_URL", '"https://causal-tracker-312605.uc.r.appspot.com"')
         buildConfigField("String", "ML_BASE_URL", '"http://130.211.223.0:3000"')
+        buildConfigField("String", "META_BASE_URL", '"http://130.211.223.0:3001"')
     }
 
     buildTypes {
