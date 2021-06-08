@@ -82,5 +82,11 @@
     <string name="prediction_result">Prediction Result</string>
     <string name="mood_predict_result">Hasil prediksi: %s</string>
     <string name="question1">Mengapa anda merasa %s hari ini?</string>
+
+    <!-- daily form detail -->
     <string name="kipi_data">Data KIPI</string>
+    <string name="symptom_list">Daftar Gejala</string>
+    <string name="symptom_feeling_description">Deskripsi yang dirasakan</string>
+    <string name="severity">Tingkat keparahan</string>
+    <string name="recommendation_for_symptom">Rekomendasi untuk %s</string>
 </resources>
