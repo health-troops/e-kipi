@@ -82,4 +82,5 @@
     <string name="prediction_result">Prediction Result</string>
     <string name="mood_predict_result">Hasil prediksi: %s</string>
     <string name="question1">Mengapa anda merasa %s hari ini?</string>
+    <string name="kipi_data">Data KIPI</string>
 </resources>

@@ -1,8 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.dailyform.DailyFormDetailActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin">
+
+        <TextView
+            android:id="@+id/tv_heading_kipi_data"
+            style="@style/MyTheme.Heading2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/kipi_data"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_kipi_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:nestedScrollingEnabled="false"
+            app:layout_constraintTop_toBottomOf="@id/tv_heading_kipi_data"
+            tools:itemCount="2"
+            tools:listitem="@layout/item_detail" />
+
+        <TextView
+            android:id="@+id/tv_heading_recommendation"
+            style="@style/MyTheme.Heading2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/rekomendasi"
+            app:layout_constraintTop_toBottomOf="@id/rv_kipi_data" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_recommendation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:nestedScrollingEnabled="false"
+            app:layout_constraintTop_toBottomOf="@id/tv_heading_recommendation"
+            tools:itemCount="4"
+            tools:listitem="@layout/item_detail" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
