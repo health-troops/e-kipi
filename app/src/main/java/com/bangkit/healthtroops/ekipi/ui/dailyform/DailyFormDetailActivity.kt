@@ -45,26 +45,7 @@ class DailyFormDetailActivity : AppCompatActivity() {
                 )
             )
 
-            adapterRecommendation.setData(
-                listOf(
-                    ItemDetail(
-                        getString(R.string.severity),
-                        "Sedang"
-                    ),
-                    ItemDetail(
-                        getString(R.string.recommendation_for_symptom, "gejala 1"),
-                        formKipiDaily.diagnosis
-                    ),
-                    ItemDetail(
-                        getString(R.string.recommendation_for_symptom, "gejala 2"),
-                        "lorem ipsum"
-                    ),
-                    ItemDetail(
-                        getString(R.string.recommendation_for_symptom, "gejala 3"),
-                        "lorem ipsum"
-                    ),
-                )
-            )
+            adapterRecommendation.setData(getRecommendations(formKipiDaily))
 
             viewModel.fetchSymptomNames(formKipiDaily.id)
             viewModel.getSymptomNames().observe(this) {
@@ -86,7 +67,8 @@ class DailyFormDetailActivity : AppCompatActivity() {
                     is Resource.Error -> {
                         Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
                     }
-                    else -> {}
+                    else -> {
+                    }
                 }
             }
         }
@@ -108,6 +90,39 @@ class DailyFormDetailActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         finish()
         return true
+    }
+
+    private fun getRecommendations(formKipiDaily: FormKipiDailyResponse): List<ItemDetail> {
+        val list = mutableListOf(
+            ItemDetail(
+                getString(R.string.severity),
+                formKipiDaily.recommendation
+            )
+        )
+
+        val separated = formKipiDaily.diagnosis.split("\n\n")
+        for (s in separated) {
+            list.add(toItemDetail(s))
+        }
+        return list
+    }
+
+    private fun toItemDetail(data: String): ItemDetail {
+        val separated = data.split("\n")
+        return when (separated.size) {
+            0 -> {
+                ItemDetail("", "")
+            }
+            1 -> {
+                ItemDetail(getString(R.string.recommendation_for_symptom, "gejala 1"), separated[0])
+            }
+            else -> {
+                ItemDetail(
+                    getString(R.string.recommendation_for_symptom, separated[0]),
+                    separated[1]
+                )
+            }
+        }
     }
 
     companion object {

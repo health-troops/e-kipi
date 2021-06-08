@@ -42,7 +42,7 @@ class DailyFormFragment : Fragment() {
 
             btnSave.setOnClickListener {
                 val checks = listAdapter.checked
-                val desc = edtDesc.text?.toString()
+                val desc = edtDesc.text.toString()
                 viewModel.sendData(checks, desc)
             }
 
