@@ -1,17 +1,24 @@
 package com.bangkit.healthtroops.ekipi.ui.dailyform
 
 import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bangkit.healthtroops.ekipi.R
+import com.bangkit.healthtroops.ekipi.data.Resource
 import com.bangkit.healthtroops.ekipi.data.source.remote.response.FormKipiDailyResponse
 import com.bangkit.healthtroops.ekipi.databinding.ActivityDailyFormDetailBinding
 import com.bangkit.healthtroops.ekipi.domain.model.ItemDetail
 import com.bangkit.healthtroops.ekipi.ui.adapter.ItemDetailAdapter
+import com.bangkit.healthtroops.ekipi.ui.dailyform.viewmodel.DailyFormDetailViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DailyFormDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDailyFormDetailBinding
+    private val viewModel by viewModels<DailyFormDetailViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +36,7 @@ class DailyFormDetailActivity : AppCompatActivity() {
                 listOf(
                     ItemDetail(
                         getString(R.string.symptom_list),
-                        "ini gejala 1, gejala 2, dst"
+                        "..."
                     ),
                     ItemDetail(
                         getString(R.string.symptom_feeling_description),
@@ -58,6 +65,30 @@ class DailyFormDetailActivity : AppCompatActivity() {
                     ),
                 )
             )
+
+            viewModel.fetchSymptomNames(formKipiDaily.id)
+            viewModel.getSymptomNames().observe(this) {
+                when (it) {
+                    is Resource.Success -> {
+                        adapterKipiData.setData(
+                            listOf(
+                                ItemDetail(
+                                    getString(R.string.symptom_list),
+                                    it.data.joinToString(", ")
+                                ),
+                                ItemDetail(
+                                    getString(R.string.symptom_feeling_description),
+                                    formKipiDaily.lainnya
+                                ),
+                            )
+                        )
+                    }
+                    is Resource.Error -> {
+                        Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+                    }
+                    else -> {}
+                }
+            }
         }
 
         binding.rvKipiData.apply {

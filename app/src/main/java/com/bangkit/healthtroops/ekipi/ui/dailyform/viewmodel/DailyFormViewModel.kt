@@ -11,7 +11,7 @@ import com.bangkit.healthtroops.ekipi.data.source.remote.response.ChecklistRespo
 import com.bangkit.healthtroops.ekipi.data.source.remote.response.InsertResponse
 import com.bangkit.healthtroops.ekipi.data.source.remote.response.MLResponse
 import com.bangkit.healthtroops.ekipi.data.source.remote.response.QueryResponse
-import com.bangkit.healthtroops.ekipi.domain.model.FormChecklist
+import com.bangkit.healthtroops.ekipi.domain.model.Checklist
 import com.bangkit.healthtroops.ekipi.data.source.remote.network.MachineLearningSevice
 import com.bangkit.healthtroops.ekipi.ui.auth.AuthActivity
 import com.bangkit.healthtroops.ekipi.utils.DataMapper
@@ -30,7 +30,7 @@ class DailyFormViewModel @Inject constructor(
     private val sharedPreferences: SharedPreferences
 ) : ViewModel() {
 
-    val checklists = MutableLiveData<List<FormChecklist>>()
+    val checklists = MutableLiveData<List<Checklist>>()
     val loading = MutableLiveData(false)
     val success = MutableLiveData(false)
     val recommendation = MutableLiveData<MLResponse>()
