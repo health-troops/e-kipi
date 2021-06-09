@@ -5,5 +5,6 @@
     <color name="blue_500">#FF2F80ED</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="white_faded">#66FFFFFF</color>
     <color name="gray">#FF989898</color>
 </resources>
