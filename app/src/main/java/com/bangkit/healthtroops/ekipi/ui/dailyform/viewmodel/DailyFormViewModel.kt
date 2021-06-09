@@ -75,7 +75,7 @@ class DailyFormViewModel @Inject constructor(
             Callback<MLResponse> {
             override fun onResponse(call: Call<MLResponse>, response: Response<MLResponse>) {
                 val resBody = response.body()
-                if (response.isSuccessful && resBody != null) {
+                if (response.isSuccessful && response.body() != null) {
                     recommendation.postValue(resBody!!)
                     val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
                     val date = Date()
