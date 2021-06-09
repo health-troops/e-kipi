@@ -89,4 +89,5 @@
     <string name="symptom_feeling_description">Deskripsi yang dirasakan</string>
     <string name="severity">Tingkat keparahan</string>
     <string name="recommendation_for_symptom">Rekomendasi untuk %s</string>
+    <string name="edit_profile">Edit Profile</string>
 </resources>

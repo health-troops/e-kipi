@@ -51,7 +51,7 @@ class SettingsFragment : Fragment() {
                 ItemSelect(
                     getString(R.string.my_profile), getString(R.string.my_profile_desc)
                 ) {
-                    findNavController().navigate(R.id.action_settingsFragment_to_profileEditActivity)
+                    findNavController().navigate(R.id.action_navigation_settings_to_profileActivity)
                 },
                 ItemSelect(
                     getString(R.string.my_komorbid), getString(R.string.my_komorbid_desc)

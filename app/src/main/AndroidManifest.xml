@@ -25,7 +25,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.profile.ProfileActivity" />
+        <activity
+            android:name=".ui.profile.ProfileActivity"
+            android:label="@string/my_profile"
+            android:theme="@style/Theme.EKIPI.NoActionBar" />
         <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.auth.AuthActivity" />
     </application>
