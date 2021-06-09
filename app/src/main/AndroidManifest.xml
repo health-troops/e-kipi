@@ -17,7 +17,6 @@
         <!-- should disable usesCleartextTraffic in release -->
         <activity android:name=".ui.dailyform.DailyFormDetailActivity" />
         <activity android:name=".ui.dailyform.DailyFormActivity" />
-        <activity android:name=".ui.profileedit.ProfileEditActivity" />
         <activity android:name=".ui.splash.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,6 +28,7 @@
             android:name=".ui.profile.ProfileActivity"
             android:label="@string/my_profile"
             android:theme="@style/Theme.EKIPI.NoActionBar" />
+        <activity android:name=".ui.profile.ProfileEditActivity" />
         <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.auth.AuthActivity" />
     </application>

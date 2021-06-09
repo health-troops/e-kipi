@@ -18,7 +18,7 @@ import com.bangkit.healthtroops.ekipi.databinding.FragmentSettingsBinding
 import com.bangkit.healthtroops.ekipi.domain.model.ItemSelect
 import com.bangkit.healthtroops.ekipi.ui.adapter.ItemSelectAdapter
 import com.bangkit.healthtroops.ekipi.ui.auth.AuthActivity
-import com.bangkit.healthtroops.ekipi.ui.profileedit.viewmodel.ProfileEditViewModel
+import com.bangkit.healthtroops.ekipi.ui.profile.ProfileEditViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

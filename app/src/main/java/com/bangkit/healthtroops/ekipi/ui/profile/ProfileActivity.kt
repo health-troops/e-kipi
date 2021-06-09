@@ -9,8 +9,6 @@ import com.bangkit.healthtroops.ekipi.R
 import com.bangkit.healthtroops.ekipi.databinding.ActivityProfileBinding
 import com.bangkit.healthtroops.ekipi.domain.model.ItemDetail
 import com.bangkit.healthtroops.ekipi.ui.adapter.ItemDetailAdapter
-import com.bangkit.healthtroops.ekipi.ui.profileedit.ProfileEditActivity
-import com.bangkit.healthtroops.ekipi.ui.profileedit.viewmodel.ProfileEditViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

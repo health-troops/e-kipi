@@ -1,4 +1,4 @@
-package com.bangkit.healthtroops.ekipi.ui.profileedit.viewmodel
+package com.bangkit.healthtroops.ekipi.ui.profile
 
 import android.content.SharedPreferences
 import androidx.lifecycle.MutableLiveData
