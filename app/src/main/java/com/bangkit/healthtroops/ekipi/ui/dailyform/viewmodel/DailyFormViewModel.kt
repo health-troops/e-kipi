@@ -7,12 +7,9 @@ import androidx.lifecycle.ViewModel
 import com.bangkit.healthtroops.ekipi.data.DailyForm
 import com.bangkit.healthtroops.ekipi.data.MLRequest
 import com.bangkit.healthtroops.ekipi.data.source.remote.network.FormService
-import com.bangkit.healthtroops.ekipi.data.source.remote.response.ChecklistResponse
-import com.bangkit.healthtroops.ekipi.data.source.remote.response.InsertResponse
-import com.bangkit.healthtroops.ekipi.data.source.remote.response.MLResponse
-import com.bangkit.healthtroops.ekipi.data.source.remote.response.QueryResponse
-import com.bangkit.healthtroops.ekipi.domain.model.FormChecklist
 import com.bangkit.healthtroops.ekipi.data.source.remote.network.MachineLearningSevice
+import com.bangkit.healthtroops.ekipi.data.source.remote.response.*
+import com.bangkit.healthtroops.ekipi.domain.model.Checklist
 import com.bangkit.healthtroops.ekipi.ui.auth.AuthActivity
 import com.bangkit.healthtroops.ekipi.utils.DataMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -30,7 +27,7 @@ class DailyFormViewModel @Inject constructor(
     private val sharedPreferences: SharedPreferences
 ) : ViewModel() {
 
-    val checklists = MutableLiveData<List<FormChecklist>>()
+    val checklists = MutableLiveData<List<Checklist>>()
     val loading = MutableLiveData(false)
     val success = MutableLiveData(false)
     val recommendation = MutableLiveData<MLResponse>()
@@ -65,14 +62,14 @@ class DailyFormViewModel @Inject constructor(
         })
     }
 
-    fun sendData(checks: List<Int>, description: String?) {
+    fun sendData(checks: List<Int>, description: String) {
         Log.d("SEND", checks.toString())
-        Log.d("SEND", description ?: "")
+        Log.d("SEND", description)
         loading.postValue(true)
         val idAccount = sharedPreferences.getInt(AuthActivity.AUTH_ID, 0)
         val mlRequestBody = MLRequest(
             symptoms = checks,
-            text = description ?: ""
+            text = description
         )
         machineLearningSevice.postMachineLearning(mlRequestBody).enqueue(object :
             Callback<MLResponse> {
@@ -89,8 +86,8 @@ class DailyFormViewModel @Inject constructor(
                             predictionClass2 = resBody.prediction[2],
                             idAccount = idAccount,
                             tanggal = dateFormat.format(date),
-                            lainnya = description ?: "",
-                            diagnosis = resBody.treatment[0].penanganan,
+                            lainnya = getDescriptionWithMood(description),
+                            diagnosis = formatTreatmentsToString(resBody.treatment),
                             recommendation = resBody.recommendation.rekomendasi,
                             checklist = checks
                         )
@@ -135,4 +132,17 @@ class DailyFormViewModel @Inject constructor(
         })
     }
 
+    private fun formatTreatmentsToString(treatments: List<TreatmentItem>): String {
+        val listValues = treatments.map { it.gejala + "\n" + it.penanganan }
+        return listValues.joinToString("\n\n")
+    }
+
+    private fun getDescriptionWithMood(description: String): String {
+        val mood = moodPrediction.value
+        return if (mood != null) {
+            "$mood - $description"
+        } else {
+            description
+        }
+    }
 }

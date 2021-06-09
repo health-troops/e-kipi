@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_dailyFormHistory_to_dailyFormActivity"
             app:destination="@id/dailyFormActivity" />
+        <action
+            android:id="@+id/action_to_dailyFormDetailActivity"
+            app:destination="@id/dailyFormDetailActivity" />
     </fragment>
     <activity
         android:id="@+id/profileEditActivity"
@@ -44,4 +47,9 @@
         android:name="com.bangkit.healthtroops.ekipi.ui.dailyform.DailyFormActivity"
         android:label="daily_form_activity"
         tools:layout="@layout/daily_form_activity" />
+    <activity
+        android:id="@+id/dailyFormDetailActivity"
+        android:name="com.bangkit.healthtroops.ekipi.ui.dailyform.DailyFormDetailActivity"
+        android:label="activity_daily_form_detail"
+        tools:layout="@layout/activity_daily_form_detail" />
 </navigation>

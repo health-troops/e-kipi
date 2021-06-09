@@ -75,4 +75,20 @@ class RemoteDataSource @Inject constructor(
             }
         }.flowOn(Dispatchers.IO)
     }
+
+    suspend fun getSymptomNamesByFormId(formId: Int) =
+        flow<ApiResponse<List<String>>> {
+            try {
+                val response = formService.getSymptomNamesByFormId(formId)
+                if (response.error == null) {
+                    val list = mutableListOf<String>()
+                    response.data.forEach { map -> list.add(map["nama_gejala"] ?: "") }
+                    emit(ApiResponse.Success(list))
+                } else {
+                    emit(ApiResponse.Error(response.error))
+                }
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
 }

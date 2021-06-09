@@ -3,7 +3,7 @@ package com.bangkit.healthtroops.ekipi.utils
 import com.bangkit.healthtroops.ekipi.data.source.remote.response.ChecklistResponse
 import com.bangkit.healthtroops.ekipi.data.source.remote.response.ComorbidDataResponse
 import com.bangkit.healthtroops.ekipi.domain.model.ComorbidData
-import com.bangkit.healthtroops.ekipi.domain.model.FormChecklist
+import com.bangkit.healthtroops.ekipi.domain.model.Checklist
 
 object DataMapper {
     fun mapResponseToDomain(input: ComorbidDataResponse) = ComorbidData(
@@ -55,7 +55,7 @@ object DataMapper {
     )
 
     fun mapResponseToDomain(input: List<ChecklistResponse>) = input.map {
-        FormChecklist(
+        Checklist(
             it.id,
             it.nama,
             it.penanganan

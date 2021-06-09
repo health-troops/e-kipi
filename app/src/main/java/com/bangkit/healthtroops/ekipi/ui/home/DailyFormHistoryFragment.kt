@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -15,6 +16,7 @@ import com.bangkit.healthtroops.ekipi.data.Resource
 import com.bangkit.healthtroops.ekipi.databinding.FragmentDailyFormHistoryBinding
 import com.bangkit.healthtroops.ekipi.domain.model.ItemSelect
 import com.bangkit.healthtroops.ekipi.ui.adapter.ItemSelectAdapter
+import com.bangkit.healthtroops.ekipi.ui.dailyform.DailyFormDetailActivity
 
 class DailyFormHistoryFragment : Fragment() {
 
@@ -51,10 +53,20 @@ class DailyFormHistoryFragment : Fragment() {
                         progressIndicator.hide()
                         var counter = 1
                         it.data?.map { formKipiDaily ->
+                            val dayNumber = "Hari ke-${counter++}"
                             ItemSelect(
-                                name = "Hari ke-${counter++}",
+                                name = dayNumber,
                                 description = formKipiDaily.lainnya
-                            ) {}
+                            ) {
+                                val bundle = bundleOf(
+                                    DailyFormDetailActivity.EXTRA_DAY_NUMBER to dayNumber,
+                                    DailyFormDetailActivity.EXTRA_FORM_KIPI to formKipiDaily
+                                )
+                                findNavController().navigate(
+                                    R.id.action_to_dailyFormDetailActivity,
+                                    bundle
+                                )
+                            }
                         }?.let { itemSelect -> itemSelectAdapter.setData(itemSelect) }
                     }
                     is Resource.Loading -> {

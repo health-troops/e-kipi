@@ -4,13 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.healthtroops.ekipi.databinding.ItemComorbidCheckboxBinding
-import com.bangkit.healthtroops.ekipi.domain.model.FormChecklist
+import com.bangkit.healthtroops.ekipi.domain.model.Checklist
 
 class ChecklistListAdapter: RecyclerView.Adapter<ChecklistListAdapter.ListViewHolder>() {
-    private var listData = ArrayList<FormChecklist>()
+    private var listData = ArrayList<Checklist>()
     val checked  = ArrayList<Int>()
 
-    fun setList(list: List<FormChecklist>) {
+    fun setList(list: List<Checklist>) {
         listData.clear()
         listData.addAll(list)
         notifyDataSetChanged()
@@ -19,7 +19,7 @@ class ChecklistListAdapter: RecyclerView.Adapter<ChecklistListAdapter.ListViewHo
     inner class ListViewHolder(private val binding: ItemComorbidCheckboxBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(data: FormChecklist) {
+        fun bind(data: Checklist) {
             binding.root.text = data.nama
             binding.root.setOnCheckedChangeListener { _, b ->
                 if (b) checked.add(data.id)
