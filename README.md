@@ -29,5 +29,5 @@ $ cd e-kipi
 
 
 ## Run App (by Install Apk)
-> Run App by installing our pre-build apk [here](https://drive.google.com/file/d/1Ht4u47VDd6CjP4GfDV2P1FKXMVTP_zkG/view?usp=sharing). (updated 4 June 2021)
+> Run App by installing our pre-build apk [here](https://drive.google.com/file/d/1xjiojH5JGIZWFCpp0rxMgLvaOfovz2Es/view?usp=sharing). (updated 9 June 2021)
 
