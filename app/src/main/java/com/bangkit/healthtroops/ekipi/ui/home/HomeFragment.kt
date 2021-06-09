@@ -11,10 +11,6 @@ import com.bangkit.healthtroops.ekipi.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = HomeFragment()
-    }
-
     private var binding: FragmentHomeBinding? = null
 
     override fun onCreateView(

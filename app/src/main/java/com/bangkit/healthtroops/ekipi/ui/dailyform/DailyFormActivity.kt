@@ -1,11 +1,8 @@
 package com.bangkit.healthtroops.ekipi.ui.dailyform
 
 import android.os.Bundle
-import android.util.Log
-import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
 import com.bangkit.healthtroops.ekipi.R
 import com.bangkit.healthtroops.ekipi.ui.dailyform.viewmodel.DailyFormViewModel
 import dagger.hilt.android.AndroidEntryPoint

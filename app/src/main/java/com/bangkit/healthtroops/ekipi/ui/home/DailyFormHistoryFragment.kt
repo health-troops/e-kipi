@@ -52,7 +52,7 @@ class DailyFormHistoryFragment : Fragment() {
                     is Resource.Success -> {
                         progressIndicator.hide()
                         var counter = 1
-                        it.data?.map { formKipiDaily ->
+                        it.data.map { formKipiDaily ->
                             val dayNumber = "Hari ke-${counter++}"
                             ItemSelect(
                                 name = dayNumber,
@@ -67,7 +67,7 @@ class DailyFormHistoryFragment : Fragment() {
                                     bundle
                                 )
                             }
-                        }?.let { itemSelect -> itemSelectAdapter.setData(itemSelect) }
+                        }.let { itemSelect -> itemSelectAdapter.setData(itemSelect) }
                     }
                     is Resource.Loading -> {
                         progressIndicator.show()

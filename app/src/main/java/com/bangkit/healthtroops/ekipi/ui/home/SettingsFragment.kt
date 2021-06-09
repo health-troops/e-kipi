@@ -18,7 +18,7 @@ import com.bangkit.healthtroops.ekipi.databinding.FragmentSettingsBinding
 import com.bangkit.healthtroops.ekipi.domain.model.ItemSelect
 import com.bangkit.healthtroops.ekipi.ui.adapter.ItemSelectAdapter
 import com.bangkit.healthtroops.ekipi.ui.auth.AuthActivity
-import com.bangkit.healthtroops.ekipi.ui.profileedit.viewmodel.ProfileEditViewModel
+import com.bangkit.healthtroops.ekipi.ui.profile.ProfileEditViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -51,7 +51,7 @@ class SettingsFragment : Fragment() {
                 ItemSelect(
                     getString(R.string.my_profile), getString(R.string.my_profile_desc)
                 ) {
-                    findNavController().navigate(R.id.action_settingsFragment_to_profileEditActivity)
+                    findNavController().navigate(R.id.action_navigation_settings_to_profileActivity)
                 },
                 ItemSelect(
                     getString(R.string.my_komorbid), getString(R.string.my_komorbid_desc)

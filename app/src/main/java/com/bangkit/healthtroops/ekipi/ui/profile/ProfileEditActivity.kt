@@ -1,4 +1,4 @@
-package com.bangkit.healthtroops.ekipi.ui.profileedit
+package com.bangkit.healthtroops.ekipi.ui.profile
 
 import android.os.Bundle
 import android.view.MenuItem
@@ -12,7 +12,6 @@ import com.bangkit.healthtroops.ekipi.R
 import com.bangkit.healthtroops.ekipi.data.RemoteResponse
 import com.bangkit.healthtroops.ekipi.data.source.remote.response.UserResponse
 import com.bangkit.healthtroops.ekipi.databinding.FragmentSignUpUserBinding
-import com.bangkit.healthtroops.ekipi.ui.profileedit.viewmodel.ProfileEditViewModel
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.ParseException
