@@ -5,27 +5,27 @@
     <string name="password">Password</string>
     <string name="log_in">Log In</string>
     <string name="sign_up">Sign Up</string>
-    <string name="name">Name</string>
-    <string name="male">Male</string>
-    <string name="female">Female</string>
-    <string name="gender">Gender</string>
-    <string name="place_of_birth">Place of Birth</string>
-    <string name="date_of_birth">Date of Birth</string>
-    <string name="phone_number">Phone Number</string>
-    <string name="mother_s_name">Mother\'s Name</string>
-    <string name="father_s_name">Father\'s Name</string>
-    <string name="province">Province</string>
-    <string name="city">City</string>
-    <string name="district">District</string>
-    <string name="sub_district">Sub-District</string>
-    <string name="address">Address</string>
-    <string name="confirm_password">Confirm Password</string>
-    <string name="next">Next</string>
+    <string name="name">Nama</string>
+    <string name="male">Laki-laki</string>
+    <string name="female">Perempuan</string>
+    <string name="gender">Jenis Kelamin</string>
+    <string name="place_of_birth">Tempat Lahir</string>
+    <string name="date_of_birth">Tanggal Lahir</string>
+    <string name="phone_number">Nomor Handphone</string>
+    <string name="mother_s_name">Nama Ibu</string>
+    <string name="father_s_name">Nama Ayah</string>
+    <string name="province">Provinsi</string>
+    <string name="city">Kota</string>
+    <string name="district">Kecamatan</string>
+    <string name="sub_district">Kelurahan</string>
+    <string name="address">Alamat</string>
+    <string name="confirm_password">Konfirmasi Password</string>
+    <string name="next">Lanjut</string>
 
-    <string name="error_empty">%s is empty</string>
-    <string name="error_invalid">%s is invalid</string>
-    <string name="error_confirm_password_wrong">The password and confirm password is not the same</string>
-    <string name="error_date">%1$s is not in date format %2$s</string>
+    <string name="error_empty">%s kosong</string>
+    <string name="error_invalid">%s tidak valid</string>
+    <string name="error_confirm_password_wrong">Password dan konfirmasi password tidak sama</string>
+    <string name="error_date">%1$s tidak sesuai format tanggal %2$s</string>
 
     <string name="data_diri">Data Diri</string>
     <string name="title_home">Home</string>
@@ -39,7 +39,7 @@
     <string name="sign_out">Sign Out</string>
     <string name="sign_out_desc">Keluar dari akun</string>
     <string name="comorbid_prompt">Adakah Penyakit bawaan yang anda idap selama ini?</string>
-    <string name="save">Save</string>
+    <string name="save">Simpan</string>
     <string name="skip">Lewati</string>
     <string name="daily_form_question_1">Pilih gejala yang kamu alami hari ini</string>
     <string name="daily_form_question_2">Deskripsikan apa yang kamu rasakan</string>
@@ -50,7 +50,7 @@
     <string name="placeholder">......</string>
     <string name="tambah_kipi">Tambah KIPI</string>
     <string name="rekomendasi">Rekomendasi</string>
-    <string name="oke">oke</string>
+    <string name="oke">Oke</string>
     <string-array name="comorbid_symptoms">
         <item>Hipertensi</item>
         <item>Diabetes melitus</item>
@@ -76,10 +76,10 @@
 
     <!-- camera prediction -->
     <string name="deteksi_wajah">Deteksi Wajah</string>
-    <string name="selected_image">Selected Image</string>
-    <string name="select">Select</string>
-    <string name="predict">Predict</string>
-    <string name="prediction_result">Prediction Result</string>
+    <string name="selected_image">Gambar yang dipilih</string>
+    <string name="select">Pilih</string>
+    <string name="predict">Prediksi</string>
+    <string name="prediction_result">Hasil Prediksi</string>
     <string name="mood_predict_result">Hasil prediksi: %s</string>
     <string name="question1">Mengapa anda merasa %s hari ini?</string>
 
@@ -89,5 +89,5 @@
     <string name="symptom_feeling_description">Deskripsi yang dirasakan</string>
     <string name="severity">Tingkat keparahan</string>
     <string name="recommendation_for_symptom">Rekomendasi untuk %s</string>
-    <string name="edit_profile">Edit Profile</string>
+    <string name="edit_profile">Ubah Profil</string>
 </resources>

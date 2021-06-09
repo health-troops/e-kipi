@@ -36,7 +36,7 @@ class DailyFormDetailActivity : AppCompatActivity() {
                 listOf(
                     ItemDetail(
                         getString(R.string.symptom_list),
-                        "..."
+                        getString(R.string.placeholder)
                     ),
                     ItemDetail(
                         getString(R.string.symptom_feeling_description),
